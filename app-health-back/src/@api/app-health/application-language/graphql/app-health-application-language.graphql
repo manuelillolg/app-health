@@ -1,0 +1,106 @@
+
+type AppHealthApplicationLanguage
+{
+    id: ID!
+    applicationId: ID!
+    application: AppHealthApplication
+    languageId: ID!
+    language: AppHealthLanguage
+    version: GraphQLString!
+    score: GraphQLInt!
+    codeQualityScore: GraphQLInt!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationLanguageInput
+{
+    id: ID!
+    applicationId: ID!
+    languageId: ID!
+    version: GraphQLString!
+    score: GraphQLInt!
+    codeQualityScore: GraphQLInt!
+}
+
+input AppHealthUpdateApplicationLanguageByIdInput
+{
+    id: ID!
+    applicationId: ID
+    languageId: ID
+    version: GraphQLString
+    score: GraphQLInt
+    codeQualityScore: GraphQLInt
+}
+
+input AppHealthUpdateApplicationLanguagesInput
+{
+    id: ID
+    applicationId: ID
+    languageId: ID
+    version: GraphQLString
+    score: GraphQLInt
+    codeQualityScore: GraphQLInt
+}
+
+type Query
+{
+    appHealthFindApplicationLanguage(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplicationLanguage
+
+    appHealthFindApplicationLanguageById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplicationLanguage
+
+    appHealthGetApplicationLanguages(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationLanguage]!
+
+    appHealthPaginateApplicationLanguages(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplicationLanguage(
+        payload: AppHealthCreateApplicationLanguageInput!
+    ): AppHealthApplicationLanguage
+
+    appHealthCreateApplicationLanguages(
+        payload: [AppHealthCreateApplicationLanguageInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationLanguageById(
+        payload: AppHealthUpdateApplicationLanguageByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplicationLanguage
+
+    appHealthUpdateApplicationLanguages(
+        payload: AppHealthUpdateApplicationLanguagesInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationLanguage]!
+
+    appHealthUpsertApplicationLanguage(
+        payload: AppHealthUpdateApplicationLanguageByIdInput!
+    ): AppHealthApplicationLanguage
+
+    appHealthDeleteApplicationLanguageById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplicationLanguage
+
+    appHealthDeleteApplicationLanguages(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationLanguage]!
+
+}

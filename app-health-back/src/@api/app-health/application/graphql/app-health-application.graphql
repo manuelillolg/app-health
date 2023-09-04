@@ -1,0 +1,144 @@
+enum AppHealthApplicationType {
+    FRONTEND
+    SERVER
+    MOBILE
+    EMBEDDED
+}
+
+
+type AppHealthApplication
+{
+    id: ID!
+    technicalSolutionId: ID!
+    technicalSolution: AppHealthTechnicalSolution
+    name: GraphQLString!
+    description: GraphQLString
+    businessImpact: GraphQLString
+    type: AppHealthApplicationType!
+    releaseDate: GraphQLISODateTime
+    architectureDiagram: GraphQLString
+    hasTenants: GraphQLBoolean!
+    hasLicensing: GraphQLBoolean!
+    costLicensesPerYear: GraphQLInt
+    requestsPerDay: GraphQLInt
+    views: [AppHealthApplicationView]
+    authentications: [AppHealthApplicationAuthentication]
+    authorizations: [AppHealthApplicationAuthorization]
+    languages: [AppHealthApplicationLanguage]
+    infrastructureServices: [AppHealthApplicationInfrastructureService]
+    databases: [AppHealthApplicationDatabase]
+    apis: [AppHealthApplicationApi]
+    integrations: [AppHealthApplicationIntegration]
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationInput
+{
+    id: ID!
+    technicalSolutionId: ID!
+    name: GraphQLString!
+    description: GraphQLString
+    businessImpact: GraphQLString
+    type: AppHealthApplicationType!
+    releaseDate: GraphQLISODateTime
+    architectureDiagram: GraphQLString
+    hasTenants: GraphQLBoolean!
+    hasLicensing: GraphQLBoolean!
+    costLicensesPerYear: GraphQLInt
+    requestsPerDay: GraphQLInt
+}
+
+input AppHealthUpdateApplicationByIdInput
+{
+    id: ID!
+    technicalSolutionId: ID
+    name: GraphQLString
+    description: GraphQLString
+    businessImpact: GraphQLString
+    type: AppHealthApplicationType
+    releaseDate: GraphQLISODateTime
+    architectureDiagram: GraphQLString
+    hasTenants: GraphQLBoolean
+    hasLicensing: GraphQLBoolean
+    costLicensesPerYear: GraphQLInt
+    requestsPerDay: GraphQLInt
+}
+
+input AppHealthUpdateApplicationsInput
+{
+    id: ID
+    technicalSolutionId: ID
+    name: GraphQLString
+    description: GraphQLString
+    businessImpact: GraphQLString
+    type: AppHealthApplicationType
+    releaseDate: GraphQLISODateTime
+    architectureDiagram: GraphQLString
+    hasTenants: GraphQLBoolean
+    hasLicensing: GraphQLBoolean
+    costLicensesPerYear: GraphQLInt
+    requestsPerDay: GraphQLInt
+}
+
+type Query
+{
+    appHealthFindApplication(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplication
+
+    appHealthFindApplicationById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplication
+
+    appHealthGetApplications(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplication]!
+
+    appHealthPaginateApplications(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplication(
+        payload: AppHealthCreateApplicationInput!
+    ): AppHealthApplication
+
+    appHealthCreateApplications(
+        payload: [AppHealthCreateApplicationInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationById(
+        payload: AppHealthUpdateApplicationByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplication
+
+    appHealthUpdateApplications(
+        payload: AppHealthUpdateApplicationsInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplication]!
+
+    appHealthUpsertApplication(
+        payload: AppHealthUpdateApplicationByIdInput!
+    ): AppHealthApplication
+
+    appHealthDeleteApplicationById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplication
+
+    appHealthDeleteApplications(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplication]!
+
+}

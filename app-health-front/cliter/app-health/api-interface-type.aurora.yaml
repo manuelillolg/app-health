@@ -1,0 +1,33 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: api-interface-type
+moduleNames: api-interface-types
+aggregateName: AppHealthApiInterfaceType
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: name
+    type: varchar
+    maxLength: 255
+    nullable: false
+  - name: score
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

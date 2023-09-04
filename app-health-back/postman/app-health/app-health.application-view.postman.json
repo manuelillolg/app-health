@@ -1,0 +1,561 @@
+{
+    "info": {
+		"_postman_id"   : "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+		"name"          : "@app - app-health/application-view",
+		"schema"        : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+			"name": "GraphQL - appHealthCreateApplicationView",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthCreateApplicationViewInput!)\n{\n\tappHealthCreateApplicationView (payload:$payload)\n\t{\n\t\tid\n\t\tapplicationId\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t}\n}",
+                        "variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"totalViews\": 238702867, \n\t\t\"complexity\": \"uibmvjnaugf6fcgohboxcqgze0j375ha3657yqebsh7vtqemzoemrcwvgtio3zvu4xgp9mqflc3h7soavvaeq37ps6q3ma93jd7r4z3ut1uleqsjrwh60vuo10uk3dl7ck6t2hycutm02ye9yf8m6i7fvucwjchnpy5q5g0suj7zwpkhtu4g4f3ryuago56a3xwjuy12svuhs0b9qu1m0h97pqq8wx4bfl3by8f1b2hrbf2lgqmqyr8na0qhdk\", \n\t\t\"description\": 54618, \n\t\t\"score\": 78220\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthCreateApplicationViews",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:[AppHealthCreateApplicationViewInput]!)\n{\n\tappHealthCreateApplicationViews (payload:$payload)\n}",
+						"variables": "{\n\t\"payload\":\n\t[\n\t\t{\n\t\t\t\"id\": \"680dc4e5-4200-4a36-89d2-9179b6f5c537\", \n\t\t\t\"applicationId\": \"07e9d2df-cfde-4790-a3e3-f6a3b5b38056\", \n\t\t\t\"totalViews\": 844220136, \n\t\t\t\"complexity\": \"j5g3sv2tvykg64z372y5w32bmmxi4nivvob9wx8k5lceprq8mve76t4lo25lmhnu3wgsjh5p9ah8mh510gmpgufc858pwsaunkwmivbyqw1r04p7r14jvbmbtj8cr5cvfgn85aygeb4pvav5hih6vippwo2yqv1fb8rlt2dfk418vbj7wgpkb2nuzjcgja4ipi6t5p57n3j6yb3uw1sne13lsrda8t88jlv0h7b9h1lbmd8q39nf0p07c19kzf\", \n\t\t\t\"description\": 95160, \n\t\t\t\"score\": 74660\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"f5b83826-fd47-4aba-bd62-411ed486441b\", \n\t\t\t\"applicationId\": \"bb9bd9c3-3b02-448e-9277-8522d0487481\", \n\t\t\t\"totalViews\": 604256774, \n\t\t\t\"complexity\": \"sr4k4mayf1qcyam3rd28haavd2jxt3lfcp8ebvh1cdmlfdoag73nzs47zwr4l8ulkwlxvs2k6yuovjduqnbocprr0h97i4xau69qq8qotz0bs4spcx0f4dpri6jsmi62lzimd5gyk99cll1hsb7d2hfnqexfztnb40z7uyxp1epiw6tz14g8cn6y7m3zz4oi39k6fp86tb6rc4x6sk5fp42ua2gogx69rfajolux207mii2prr3aae3iwt6zk3\", \n\t\t\t\"description\": 31680, \n\t\t\t\"score\": 34959\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"b37a1b36-3c1b-45b7-82dc-335eb3e606d3\", \n\t\t\t\"applicationId\": \"e7b317e7-c45b-4cde-9794-eeaa7a64f7f0\", \n\t\t\t\"totalViews\": 492477032, \n\t\t\t\"complexity\": \"e4fihjhu44glgoitojsqht3m3kq3nk6i0zzn8k4oukzyemmo3qw0irgsvzctw3p7i24mmea6lllra0cp3egw5l261da48dnvtmfx46pjk8mtfdsjiwf4zy3pxcm72tu9xoy0lwppg1z7knhj6wyuvovmflw50mz8jik428u1dxvhywoxf3kaq5k6bo5ze2zitkuviq5m5tqqb4r3is63njk35tc8zv1le0dvjx5ql2ib2ryh62pm13vhdon2ao\", \n\t\t\t\"description\": 39729, \n\t\t\t\"score\": 76573\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"ce48b643-f565-4233-ab81-c042853ba96e\", \n\t\t\t\"applicationId\": \"28dbfdc0-b018-46f2-b630-ebb2b0a11df4\", \n\t\t\t\"totalViews\": 303862134, \n\t\t\t\"complexity\": \"c7pn9l9dpnhsbfvb5baraaxcnic18uqmm7yv5f96t62xd2m5qt7lolo0vl789agb9bim5xx50ww3hs7weveai8e62d190bpmh37a5vafaia65uldmxhs13h63unoz7718scp0tx0a6uwx11l5zwq41ilqgmn1n8pf6308212i5x5x844475ldvaj2xf6yftn2t91huqzotajssykfaumy2tpooiyj1qwqgx53ak07dlqvicrg5lscmrftp6oit\", \n\t\t\t\"description\": 33554, \n\t\t\t\"score\": 44534\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"54e436f0-b2a2-40ca-a16a-341f47fe7255\", \n\t\t\t\"applicationId\": \"79a5baa5-ed8e-4973-994b-ac4d2a057e4b\", \n\t\t\t\"totalViews\": 765187793, \n\t\t\t\"complexity\": \"rs3srd9o1oljo7surys71ahok7juzj6a2esyzd1mbmo3l5qzgc47r8t6jyv052rfb7gaj6zfgqeyf8143o0vs2l04tqdoja9acqbbe7gp6vc48lr2gnic1bl9hvxh4pcdnflcxgxtvxpwiewh2yj9pmfi5rdsd4u4feea2pbollcl6ko956daim0i94prv3a4srfk0wbrgb4406j4v44nuq4508ybbzvmou3t0c3g9zenkifie6pg7szfoag6v\", \n\t\t\t\"description\": 88797, \n\t\t\t\"score\": 83515\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"98afdce3-f990-4ccf-b2d9-73a9dc94dc24\", \n\t\t\t\"applicationId\": \"3edab6bf-044a-431a-b80c-48601b846f7d\", \n\t\t\t\"totalViews\": 420538612, \n\t\t\t\"complexity\": \"zv39j9w4f3qhrc9sk61419l524wlzmkr12bggcy16m8apvihip0jql6b4adzrsw6xtdvq6uvh2gyxfsn9cw8bgfauedna7ai1v4t4fev9owrhumju2aeo3sbqn02e432ni5xqomf758w3l05v6k52zatci6rqp41ijru63i82qb1pkfgwc8cszrejlu4eu5ylxy0kcu7sjd4inhaaab0knsgf7ldvnb09u0qjxl9ztqlq0uafp4q3qk6pa5vaj\", \n\t\t\t\"description\": 82661, \n\t\t\t\"score\": 75686\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"a017c280-9fcd-461e-81f8-f8b9e142ba83\", \n\t\t\t\"applicationId\": \"8670f2d2-df1c-4ecf-8d61-e94c8f4b87b8\", \n\t\t\t\"totalViews\": 755956402, \n\t\t\t\"complexity\": \"dunomaskj2wmgacuwgiqka8ztteui2lgp5xxb0bqfg3lhf7rke3gzjz2anxp66klwx25i5uqf0dfpruc3gk1ggfxnh1a2c2kqquic5fw90jd6viipnhot7lu8ursicd0ugbey7d7da8sl53h19v6lpuu5ad0rn6wqy2pncqnhskm72ip0sqdcw1g1bbucohbkmbrele27wopqkkbj4593n3t8twkv6dzpw53ynq21hfhfcapt1h304gvwyi6ko\", \n\t\t\t\"description\": 28088, \n\t\t\t\"score\": 61558\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"c901af25-6225-49c2-80d5-032a39838d73\", \n\t\t\t\"applicationId\": \"9cb8a92a-889d-40ea-9c1a-cd5516efa93b\", \n\t\t\t\"totalViews\": 629142033, \n\t\t\t\"complexity\": \"xoyyj4c6pg2tv8uk8fdibdpropw4pqwbrn1rld52cewv6xhvmaxqalhm1jv52agouxbur26360vzf49o1216c493mc8tqj2qownl6n5mkb6bgth4h5le71cbuye9k0q9mjht403qz2cwb2bt9yrpnemaectc3bpg3owave3jngj7htecx25x1fpbv9p8zpubkqe7sf3od9v8vplfo5ua13bkt2bygg5zcuj5zqvotu75t92gptkp6uyv1e2so9\", \n\t\t\t\"description\": 92828, \n\t\t\t\"score\": 27490\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"246c68af-6de5-4f14-a60d-8410f7aea1e6\", \n\t\t\t\"applicationId\": \"314b8cb5-b9b1-4b39-ac72-457a65c9491a\", \n\t\t\t\"totalViews\": 755157379, \n\t\t\t\"complexity\": \"tlypv3cx6b8qx79t5wezeu0u36jsxvbcpqqlw8hl9vj5pa5hsfn8vxm76em64slmz983d8wm8x78hjzll3gpwtl0ph9avmqwj4c3odauoocp31oi0xghtwtep12wofd5x28wpwazceot8n2eayr10ip9346nbw3oqxmo7zucf0n8duunjy5wk7byrcnojfpuo159yvkduu5ofie7viqr1vzi1iir5z8sxj696d02ljv08zgncibajk7p10053e\", \n\t\t\t\"description\": 28164, \n\t\t\t\"score\": 65192\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"13e9fc04-7d50-4c08-8ce9-ec8a58309303\", \n\t\t\t\"applicationId\": \"af40217d-e8bd-40af-9063-78361c7e2697\", \n\t\t\t\"totalViews\": 408213922, \n\t\t\t\"complexity\": \"4iu1u5tbx07xvbbruxkwvlofxgg4aeh4mw14tlb9j6b4a5jv5jj2hou71hefoorbq501umk5k66nwdzdll0lzbbrnxe6uln80pkecz9z3zv9ntyn4qkm98yb5a95ylavc725fggxy1whd1znhaahi1l44oi02a9konda7dl6xsojunqh4i6s6nmrfcku65ymnnbdhbdo5okxya1v8skxk2qa8teim7puqcebzzskd68lgdy6os5rsdkpdmwnbv\", \n\t\t\t\"description\": 37769, \n\t\t\t\"score\": 48219\n\t\t}\n\t]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthPaginateApplicationViews",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement $constraint:QueryStatement)\n{\n\tappHealthPaginateApplicationViews (query:$query constraint:$constraint)\n\t{\n\t\ttotal\n\t\tcount\n\t\trows\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthGetApplicationViews",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthGetApplicationViews (query: $query)\n\t{\n\t\tid\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindApplicationView",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthFindApplicationView (query: $query)\n\t{\n\t\tid\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindApplicationViewById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($id:ID)\n{\n\tappHealthFindApplicationViewById (id:$id)\n\t{\n\t\tid\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthUpdateApplicationView",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthUpdateApplicationViewInput!)\n{\n\tappHealthUpdateApplicationView (payload:$payload)\n\t{\n\t\tid\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"totalViews\": 121397498, \n\t\t\"complexity\": \"avzp46fxxrzyuxslix99r43ibboanj3ajd60x2mlsynkwku4xgz9zue0priybwkvfk59ipxg7zfugueeoh4ugqb7xmfjztuqwirmh27ap1ydfz7v3g82jnpzdfv6k20s46c1bpuyt5uw4se6zaq9utl4v0n7qruyiazbz5ap9k7tj1ruhd785arh2xlvk72gcw6oyrui1acqymk6bqytjd6j5w7fnt70stf3jmrj8qtmgpxtcq8f002r6sbfeo\", \n\t\t\"description\": 27181, \n\t\t\"score\": 68617\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteApplicationViewById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($id:ID!)\n{\n\tappHealthDeleteApplicationViewById (id:$id)\n\t{\n\t\tid\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteApplicationViews",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($query:QueryStatement)\n{\n\tappHealthDeleteApplicationViews (query: $query)\n\t{\n\t\tid\n\t\ttotalViews\n\t\tcomplexity\n\t\tdescription\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-view/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"totalViews\": 325856465, \n\t\"complexity\": \"4cxtvyc9f8ok27orubypjk48rv8z2yx7e9oyobr4yryh53qqhy7aaa65dzfc4622e6i3jbj9yy2fritpcrvyluxsjia6ylyrqnbjbzs416epv6azat99zovbwg0uw2fevmafbvckm6z0u842c05g2jvahc173h1lyxfp09t6xqie2jsoj01613l46jiq2qsqjjobjj85h3rk4k27mqli8dblgqoxgblrp0x00cmf5e1g4vwqcsuppxgxqwlqj3\", \n\t\"description\": 82501, \n\t\"score\": 58453\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-view/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-view",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-views/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "[\n\t{\n\t\t\"id\": \"ec5757eb-4419-4965-861b-cc3dfbdbf51c\", \n\t\t\"applicationId\": \"fd103990-0e61-477c-bea9-29bb9e5de4de\", \n\t\t\"totalViews\": 343504131, \n\t\t\"complexity\": \"egw71y20ok2vjzyeid1jiv48hxl3l3xpd96ykydywb5np3zkd7bk3hqpe0k76bqq704aotwr8tou336s71i9q480ygidvf2z3xzx3ucus1z9mh3bx0tphtvr1lr3wlm2sygb4jnu1girwz9plszoh2xf0hvzlmxb5tiiqgilbeeco7rf73mifokkbzh4usvtre7pti30z3eflmh24naapotd8pdk0zeg0it3jyf2m59yzb2y03qifcdwg8u1bq\", \n\t\t\"description\": 81314, \n\t\t\"score\": 54625\n\t}, \n\t{\n\t\t\"id\": \"45e4e335-565c-4fbb-b493-d918faab1c5a\", \n\t\t\"applicationId\": \"7c2264d9-fb69-43da-80dc-20434551c699\", \n\t\t\"totalViews\": 329392273, \n\t\t\"complexity\": \"l4krh2muqseigigqhziuzgszvz9i7lbhy6w1o3loakyttfeej0xegv6mphb65d2fa06gaevw25zl2fbjsjau66dzn2tgoinum5hx4nuvia5g90bt91ilfpc87t4g71qixettsdf892afzrc0f0jqttblvdvse5bzqwbyzz8igo4iweht2iufraq94iedu2uhoai1pj0a0oy6pdlwdcdmfoo7zox46udx4ns8zntj555br9vas0qei6zmr835vm\", \n\t\t\"description\": 55059, \n\t\t\"score\": 77353\n\t}, \n\t{\n\t\t\"id\": \"0ec83f1b-6914-4ceb-974c-133f1cacff54\", \n\t\t\"applicationId\": \"8a9c109a-54c6-419b-8242-aca69480d27f\", \n\t\t\"totalViews\": 358754791, \n\t\t\"complexity\": \"4rtnx4nq7gnmkh9uanuqx3k5zk2gfwo8edz810pczl4xxcd1dzqnl9otcfouu9dghbl0u0m26465mamteelg6j4bomytqypltnwppksib8rtlc3052h949gq1dtya7tfbkwwzk1yq3pcgovhc2458hna6wmjxmedgzk9dv3qrot0x9w9nv4hhbjlap0d5i62j1ve7gurdmwmdhn3vzm8fr07wxdjc05xdfcgofb311rm6534lunx31yw2y2qge\", \n\t\t\"description\": 87307, \n\t\t\"score\": 57776\n\t}, \n\t{\n\t\t\"id\": \"8c438529-7ded-4a4f-8751-78e59e6c36e9\", \n\t\t\"applicationId\": \"9c88a10c-1a81-4d48-8c0e-999a862e95f6\", \n\t\t\"totalViews\": 991832848, \n\t\t\"complexity\": \"ol9slkfb3hgvoi0gzr0xkzyr6lu9ltvvmhdzzv9c6l5i1lxynh5obx7zytrsgcgx2yj5pyqyrqy7cuk8z2p576y99okowgxtxzwyfdnfprl8pg3jd7dxhwjxxzw28b0euv5h56qonur5pmoa6msmwe174ibu6eb2bjf0n5tpt629d5k6s8wg0n8bwhhjynki5t93z16sbvdijdvu0w0kkzvj1e1hmr93a4v4eeh6q2w82323708x3kj6x8wu97\", \n\t\t\"description\": 95809, \n\t\t\"score\": 77347\n\t}, \n\t{\n\t\t\"id\": \"c2b57dd6-ff2c-4ba3-ad13-a3743027254b\", \n\t\t\"applicationId\": \"b52332f6-014e-4b45-b4c9-7321da643dda\", \n\t\t\"totalViews\": 488781813, \n\t\t\"complexity\": \"8rfmotu3rx9lslar253jdl6kp5piod8sd3g6imvz3e30rme8g4i2mgt6a77nl7hxlgbwx1ohnad0hbnv1o8uml6dbg1w7b5vezm5k5r5wnyvlvgttttddpteo4ydid9cn8s4jfj9zju5l043n4tkn5dfw12wdehuw2gt1uouedxpyws01bb2dyqiezte7sxlkoqnmufvrcik6eh4xieet7xntoij4kymloaqdzfk5ysiolvyq7hvr9s00fpk2v\", \n\t\t\"description\": 52564, \n\t\t\"score\": 73224\n\t}, \n\t{\n\t\t\"id\": \"d2d5c1a5-1914-48e0-934a-0f85b25a4064\", \n\t\t\"applicationId\": \"ce294b1a-59f4-4ec7-952d-b421e3de38a6\", \n\t\t\"totalViews\": 376951118, \n\t\t\"complexity\": \"wj1r9db4zq46ppt1bgtwpt5mjgiozkaf3gbi5qgv78j3b6zt4alh7nw181z58stku4ddyldebr1dqraq18uxv3dznjub8huhfqfu2grfgryixl4p7t3gjcui1r3uhypmfwbn45tzqzxkoe2aw1lh59umzqg4sjm0acnibhftk11qes6q0cg6hfnc4k9d2ep56bfzkkfu6r8vmj0sbixujcq8cp0eae1l7xolesroqlkwq8yyod48krrq2hzsdr\", \n\t\t\"description\": 45405, \n\t\t\"score\": 53453\n\t}, \n\t{\n\t\t\"id\": \"bb4b139a-4a0c-4776-a974-ae99b1a34f7a\", \n\t\t\"applicationId\": \"7e6bc37e-a50d-42e8-8c82-65bc358f4bed\", \n\t\t\"totalViews\": 694722740, \n\t\t\"complexity\": \"rbcpqi4wjwyyn5343kntl9ze6llarq01igvv8heoutltcahiysa55wk1il54vrqixx83v0mwnpi267l91h3dmf7zk5d2neirfubtny6l8noo6uif6qeu547hqijec1jz9yyzq0f2ku4ivsktufsm345xi86itct1uld681gmse6j0fyopkfluxo5a3n9uo8qrepxioimwmwx8i651k4zk5284v95mrs1u3i0tgdg2w2sc3gco4znqpqfwqhj9j\", \n\t\t\"description\": 49058, \n\t\t\"score\": 47473\n\t}, \n\t{\n\t\t\"id\": \"889912e9-ba00-4c49-8336-2e911c4853ec\", \n\t\t\"applicationId\": \"b3397a97-b797-4f21-8b99-26c932fc272a\", \n\t\t\"totalViews\": 499823320, \n\t\t\"complexity\": \"s9ije77avi12kh2me0oroiaiovgtghypw1zbui4imx0zuhrf2ngxmolwxcm9pscpmum5gdmvtf4hlhxlpyf65uax0ox13deph5j7grngath7tx2z3vrfulozy7cziv422qg7omw8w44wf6l9qq2t0ewepzk1af9xf1dfsq2dg2mlaigejqqeyvfn572sjy8w7id6katdg1glgirmcworaok444y3szb5lq306ytd9w03fh6s3cuwtd601j944z\", \n\t\t\"description\": 74816, \n\t\t\"score\": 98759\n\t}, \n\t{\n\t\t\"id\": \"c90daf12-a246-4a0b-a34b-8d3288c73485\", \n\t\t\"applicationId\": \"f5396167-9231-41ae-8a62-88de93e8e9c6\", \n\t\t\"totalViews\": 961529433, \n\t\t\"complexity\": \"8os41tlno5pwfgodpbalkfadlhdzuu9n9kwpp2texf89n5c5kwe7wjh34qif8wx7i227ihv2lni767sxomxj21bq4s97qn7nwqhq2co8mch6a0fwliaw21g4xdi88i9v08ht6u6ww86sjnezipq3gdogxq0gmjfae9mkokxw4n16z2py9cr8rhcebgwgfswjm5j8dg5ppse1w0libdw8k2t6fu511fbaagco5yvc4273uymppj52ktapr1l39v\", \n\t\t\"description\": 45080, \n\t\t\"score\": 59102\n\t}, \n\t{\n\t\t\"id\": \"5b254db8-e8e1-4f37-9978-5e797924f755\", \n\t\t\"applicationId\": \"ba84407d-6d17-46a5-9126-158506ebdf60\", \n\t\t\"totalViews\": 815484312, \n\t\t\"complexity\": \"k396slnfnhntfuw2rs5mcd8jy93urjffoyv7mlqk40v0uwhirmp7gq9b0tlpbia6jaai0knewy4m8ff58ltb92egblb8qhtdlupue8q1bc6ozieq066bpdoju5fgk1dzsebsb4j0qjp2kde2fxmmt0itctbvyvr939o705evpyeq495ge47ohut07g3fcsbcbts1q413z41piaqimq7spppuja14072uuseu9tqciqofpd3v9n1hgj4zide639\", \n\t\t\"description\": 52423, \n\t\t\"score\": 14643\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-views/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-views",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-views/paginate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-views/paginate",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+                        "application-views",
+                        "paginate"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-views/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-views/get",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-views",
+                        "get"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-view/find",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-view/find",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-view",
+                        "find"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-view/find/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-view/find/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-view",
+                        "find",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-view/update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"totalViews\": 356359662, \n\t\"complexity\": \"77xof8scbx5evordrs2opgl3j231a8gou3euia6z2ju6m46ltcxg6ijlvl2epgqvm6n9fc38yn9qr6tfy1ra101cpylhqbjql2lx0b6oydsgt7qjgqh110axwk9ocbqtau38v1zedjhlsmhb7dazm030l265nmolaagkburzb7bndrw1xi67cy24v32wv2213zpdaahdm4977ho832p2bec7l8q2wvosgarr0512hm8i1b7o5cp2ohgxwj3wh3\", \n\t\"description\": 85255, \n\t\"score\": 80170\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-view/update",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-view",
+                        "update"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-view/delete/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-view/delete/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-view",
+                        "delete",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+		},
+        {
+			"name": "REST - app-health/application-views/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-views/delete",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-views",
+                        "delete"
+					]
+				}
+			},
+			"response": []
+		}
+    ],
+    "variable": [
+		{
+			"id": "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+			"key": "URL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

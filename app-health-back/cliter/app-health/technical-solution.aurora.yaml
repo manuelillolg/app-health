@@ -1,0 +1,50 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: technical-solution
+moduleNames: technical-solutions
+aggregateName: AppHealthTechnicalSolution
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: customerId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthCustomer
+      modulePath: app-health/customer
+      key: id
+      field: customer
+      avoidConstraint: true
+  - name: name
+    type: varchar
+    maxLength: 255
+    nullable: false
+  - name: description
+    type: text
+    nullable: true
+  - name: architectureDiagram
+    type: varchar
+    maxLength: 255
+    nullable: true
+  - name: proposal
+    type: text
+    nullable: true
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

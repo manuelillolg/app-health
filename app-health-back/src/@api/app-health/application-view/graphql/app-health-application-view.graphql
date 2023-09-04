@@ -1,0 +1,105 @@
+
+type AppHealthApplicationView
+{
+    id: ID!
+    applicationId: ID!
+    application: AppHealthApplication
+    totalViews: GraphQLInt!
+    complexity: GraphQLString!
+    description: GraphQLInt
+    score: GraphQLInt!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationViewInput
+{
+    id: ID!
+    applicationId: ID!
+    totalViews: GraphQLInt!
+    complexity: GraphQLString!
+    description: GraphQLInt
+    score: GraphQLInt!
+}
+
+input AppHealthUpdateApplicationViewByIdInput
+{
+    id: ID!
+    applicationId: ID
+    totalViews: GraphQLInt
+    complexity: GraphQLString
+    description: GraphQLInt
+    score: GraphQLInt
+}
+
+input AppHealthUpdateApplicationViewsInput
+{
+    id: ID
+    applicationId: ID
+    totalViews: GraphQLInt
+    complexity: GraphQLString
+    description: GraphQLInt
+    score: GraphQLInt
+}
+
+type Query
+{
+    appHealthFindApplicationView(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplicationView
+
+    appHealthFindApplicationViewById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplicationView
+
+    appHealthGetApplicationViews(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationView]!
+
+    appHealthPaginateApplicationViews(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplicationView(
+        payload: AppHealthCreateApplicationViewInput!
+    ): AppHealthApplicationView
+
+    appHealthCreateApplicationViews(
+        payload: [AppHealthCreateApplicationViewInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationViewById(
+        payload: AppHealthUpdateApplicationViewByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplicationView
+
+    appHealthUpdateApplicationViews(
+        payload: AppHealthUpdateApplicationViewsInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationView]!
+
+    appHealthUpsertApplicationView(
+        payload: AppHealthUpdateApplicationViewByIdInput!
+    ): AppHealthApplicationView
+
+    appHealthDeleteApplicationViewById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplicationView
+
+    appHealthDeleteApplicationViews(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationView]!
+
+}

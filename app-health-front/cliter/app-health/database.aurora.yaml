@@ -1,0 +1,40 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: database
+moduleNames: databases
+aggregateName: AppHealthDatabase
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: name
+    type: varchar
+    maxLength: 255
+    nullable: false
+  - name: type
+    type: enum
+    enumOptions:
+      - RELATIONAL
+      - NO_SQL
+      - KEY_VALUE
+      - GRAPH
+    nullable: false
+  - name: versions
+    type: json
+    nullable: false
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

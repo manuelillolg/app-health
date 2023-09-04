@@ -1,0 +1,9 @@
+export { AppHealthApplicationAuthorizationId } from './app-health-application-authorization-id';
+export { AppHealthApplicationAuthorizationApplicationId } from './app-health-application-authorization-application-id';
+export { AppHealthApplicationAuthorizationAuthorizationInterfaceId } from './app-health-application-authorization-authorization-interface-id';
+export { AppHealthApplicationAuthorizationTotalUsers } from './app-health-application-authorization-total-users';
+export { AppHealthApplicationAuthorizationScore } from './app-health-application-authorization-score';
+export { AppHealthApplicationAuthorizationApplicationInfrastructureServiceId } from './app-health-application-authorization-application-infrastructure-service-id';
+export { AppHealthApplicationAuthorizationCreatedAt } from './app-health-application-authorization-created-at';
+export { AppHealthApplicationAuthorizationUpdatedAt } from './app-health-application-authorization-updated-at';
+export { AppHealthApplicationAuthorizationDeletedAt } from './app-health-application-authorization-deleted-at';

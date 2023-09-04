@@ -1,0 +1,65 @@
+{
+    "version": "0.0.1",
+    "files": [
+        {
+            "path": "src/assets/i18n/app-health/en.json",
+            "integrity": "sha1:534e5f914ae99bf0a342a2f7a7e0724bd0d11ef7"
+        },
+        {
+            "path": "src/assets/i18n/app-health/es.json",
+            "integrity": "sha1:534e5f914ae99bf0a342a2f7a7e0724bd0d11ef7"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/app-health.component.html",
+            "integrity": "sha1:67404a161486df15c48cc64ace3ebafc7edd1503"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/app-health.component.ts",
+            "integrity": "sha1:1942699685935355aca383bd4742564761d3ac86"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/app-health.navigation.ts",
+            "integrity": "sha1:a9a2e558eee7d79fa70cd3346319898588aac956"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/app-health.routes.ts",
+            "integrity": "sha1:f5e8ce605695c8ce5db32c96f8e945f330b6f9d6"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/app-health.types.ts",
+            "integrity": "sha1:da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type-detail.component.html",
+            "integrity": "sha1:f15814be4c54a738a1857e210c0af5fa661e42d8"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type-detail.component.ts",
+            "integrity": "sha1:96c4cb506a830db7ab1d0858403fd4e6708cf3c3"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type-list.component.html",
+            "integrity": "sha1:92ff886e8b1c70a8c08314015c771e9ee8b2920e"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type-list.component.ts",
+            "integrity": "sha1:240ea9996f2d36411ea429bb367bea86a6331bbf"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type.columns-config.ts",
+            "integrity": "sha1:f2f47c6d0b4b2a59fa37ca0de573fc74eed5f851"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type.graphql.ts",
+            "integrity": "sha1:741b322d35f1516af4c1c9066a47d50e97679222"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type.resolvers.ts",
+            "integrity": "sha1:ea5e78f176f0c2f222bd94331c2e0d72d2a4f313"
+        },
+        {
+            "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type.service.ts",
+            "integrity": "sha1:364960cb5967ee38fe6259174f537547fdfa5e0b"
+        }
+    ]
+}

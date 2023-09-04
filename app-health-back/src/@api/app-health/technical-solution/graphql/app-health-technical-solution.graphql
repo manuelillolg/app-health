@@ -1,0 +1,105 @@
+
+type AppHealthTechnicalSolution
+{
+    id: ID!
+    customerId: ID!
+    customer: AppHealthCustomer
+    name: GraphQLString!
+    description: GraphQLString
+    architectureDiagram: GraphQLString
+    proposal: GraphQLString
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateTechnicalSolutionInput
+{
+    id: ID!
+    customerId: ID!
+    name: GraphQLString!
+    description: GraphQLString
+    architectureDiagram: GraphQLString
+    proposal: GraphQLString
+}
+
+input AppHealthUpdateTechnicalSolutionByIdInput
+{
+    id: ID!
+    customerId: ID
+    name: GraphQLString
+    description: GraphQLString
+    architectureDiagram: GraphQLString
+    proposal: GraphQLString
+}
+
+input AppHealthUpdateTechnicalSolutionsInput
+{
+    id: ID
+    customerId: ID
+    name: GraphQLString
+    description: GraphQLString
+    architectureDiagram: GraphQLString
+    proposal: GraphQLString
+}
+
+type Query
+{
+    appHealthFindTechnicalSolution(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthTechnicalSolution
+
+    appHealthFindTechnicalSolutionById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthTechnicalSolution
+
+    appHealthGetTechnicalSolutions(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthTechnicalSolution]!
+
+    appHealthPaginateTechnicalSolutions(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateTechnicalSolution(
+        payload: AppHealthCreateTechnicalSolutionInput!
+    ): AppHealthTechnicalSolution
+
+    appHealthCreateTechnicalSolutions(
+        payload: [AppHealthCreateTechnicalSolutionInput]!
+    ): Boolean!
+
+    appHealthUpdateTechnicalSolutionById(
+        payload: AppHealthUpdateTechnicalSolutionByIdInput!
+        constraint: QueryStatement
+    ): AppHealthTechnicalSolution
+
+    appHealthUpdateTechnicalSolutions(
+        payload: AppHealthUpdateTechnicalSolutionsInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthTechnicalSolution]!
+
+    appHealthUpsertTechnicalSolution(
+        payload: AppHealthUpdateTechnicalSolutionByIdInput!
+    ): AppHealthTechnicalSolution
+
+    appHealthDeleteTechnicalSolutionById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthTechnicalSolution
+
+    appHealthDeleteTechnicalSolutions(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthTechnicalSolution]!
+
+}

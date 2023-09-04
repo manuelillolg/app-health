@@ -1,0 +1,92 @@
+
+type AppHealthInfrastructureProvider
+{
+    id: ID!
+    name: GraphQLString!
+    score: GraphQLInt!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateInfrastructureProviderInput
+{
+    id: ID!
+    name: GraphQLString!
+    score: GraphQLInt!
+}
+
+input AppHealthUpdateInfrastructureProviderByIdInput
+{
+    id: ID!
+    name: GraphQLString
+    score: GraphQLInt
+}
+
+input AppHealthUpdateInfrastructureProvidersInput
+{
+    id: ID
+    name: GraphQLString
+    score: GraphQLInt
+}
+
+type Query
+{
+    appHealthFindInfrastructureProvider(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthInfrastructureProvider
+
+    appHealthFindInfrastructureProviderById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthInfrastructureProvider
+
+    appHealthGetInfrastructureProviders(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthInfrastructureProvider]!
+
+    appHealthPaginateInfrastructureProviders(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateInfrastructureProvider(
+        payload: AppHealthCreateInfrastructureProviderInput!
+    ): AppHealthInfrastructureProvider
+
+    appHealthCreateInfrastructureProviders(
+        payload: [AppHealthCreateInfrastructureProviderInput]!
+    ): Boolean!
+
+    appHealthUpdateInfrastructureProviderById(
+        payload: AppHealthUpdateInfrastructureProviderByIdInput!
+        constraint: QueryStatement
+    ): AppHealthInfrastructureProvider
+
+    appHealthUpdateInfrastructureProviders(
+        payload: AppHealthUpdateInfrastructureProvidersInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthInfrastructureProvider]!
+
+    appHealthUpsertInfrastructureProvider(
+        payload: AppHealthUpdateInfrastructureProviderByIdInput!
+    ): AppHealthInfrastructureProvider
+
+    appHealthDeleteInfrastructureProviderById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthInfrastructureProvider
+
+    appHealthDeleteInfrastructureProviders(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthInfrastructureProvider]!
+
+}

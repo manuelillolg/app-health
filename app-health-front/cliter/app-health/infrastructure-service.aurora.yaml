@@ -1,0 +1,44 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: infrastructure-service
+moduleNames: infrastructure-services
+aggregateName: AppHealthInfrastructureService
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: providerId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthInfrastructureProvider
+      modulePath: app-health/infrastructure-provider
+      key: id
+      field: provider
+      avoidConstraint: true
+  - name: name
+    type: varchar
+    maxLength: 255
+    nullable: false
+  - name: score
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

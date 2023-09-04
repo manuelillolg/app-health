@@ -1,0 +1,59 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: application-language
+moduleNames: application-languages
+aggregateName: AppHealthApplicationLanguage
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: applicationId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApplication
+      modulePath: app-health/application
+      key: id
+      field: application
+      avoidConstraint: true
+  - name: languageId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthLanguage
+      modulePath: app-health/language
+      key: id
+      field: language
+      avoidConstraint: true
+  - name: version
+    type: varchar
+    maxLength: 20
+    nullable: false
+  - name: score
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: codeQualityScore
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

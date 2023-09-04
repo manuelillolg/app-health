@@ -1,0 +1,92 @@
+
+type AppHealthLanguage
+{
+    id: ID!
+    name: GraphQLString!
+    versions: JSON!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateLanguageInput
+{
+    id: ID!
+    name: GraphQLString!
+    versions: JSON!
+}
+
+input AppHealthUpdateLanguageByIdInput
+{
+    id: ID!
+    name: GraphQLString
+    versions: JSON
+}
+
+input AppHealthUpdateLanguagesInput
+{
+    id: ID
+    name: GraphQLString
+    versions: JSON
+}
+
+type Query
+{
+    appHealthFindLanguage(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthLanguage
+
+    appHealthFindLanguageById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthLanguage
+
+    appHealthGetLanguages(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthLanguage]!
+
+    appHealthPaginateLanguages(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateLanguage(
+        payload: AppHealthCreateLanguageInput!
+    ): AppHealthLanguage
+
+    appHealthCreateLanguages(
+        payload: [AppHealthCreateLanguageInput]!
+    ): Boolean!
+
+    appHealthUpdateLanguageById(
+        payload: AppHealthUpdateLanguageByIdInput!
+        constraint: QueryStatement
+    ): AppHealthLanguage
+
+    appHealthUpdateLanguages(
+        payload: AppHealthUpdateLanguagesInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthLanguage]!
+
+    appHealthUpsertLanguage(
+        payload: AppHealthUpdateLanguageByIdInput!
+    ): AppHealthLanguage
+
+    appHealthDeleteLanguageById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthLanguage
+
+    appHealthDeleteLanguages(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthLanguage]!
+
+}

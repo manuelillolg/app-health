@@ -1,0 +1,561 @@
+{
+    "info": {
+		"_postman_id"   : "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+		"name"          : "@app - app-health/infrastructure-service",
+		"schema"        : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+			"name": "GraphQL - appHealthCreateInfrastructureService",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthCreateInfrastructureServiceInput!)\n{\n\tappHealthCreateInfrastructureService (payload:$payload)\n\t{\n\t\tid\n\t\tproviderId\n\t\tname\n\t\tscore\n\t}\n}",
+                        "variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"providerId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"name\": \"Gorgeous Plastic Car\", \n\t\t\"score\": 51236\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthCreateInfrastructureServices",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:[AppHealthCreateInfrastructureServiceInput]!)\n{\n\tappHealthCreateInfrastructureServices (payload:$payload)\n}",
+						"variables": "{\n\t\"payload\":\n\t[\n\t\t{\n\t\t\t\"id\": \"39a72cee-a9c3-4a8e-95b0-3ad4243c098a\", \n\t\t\t\"providerId\": \"f4f50db3-1e27-4f81-8184-a50e1ee89177\", \n\t\t\t\"name\": \"Handcrafted Rubber Sausages\", \n\t\t\t\"score\": 18144\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"64e78b49-1679-4126-9129-75b0d582b8bc\", \n\t\t\t\"providerId\": \"07168242-97f1-4995-b590-24dfd5844030\", \n\t\t\t\"name\": \"Unbranded Concrete Table\", \n\t\t\t\"score\": 31159\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"722958a8-bee3-4e28-ad3c-5397e1ead1f8\", \n\t\t\t\"providerId\": \"e5709f87-a9b5-4c4b-a53c-794314ce3dff\", \n\t\t\t\"name\": \"Unbranded Fresh Chips\", \n\t\t\t\"score\": 78742\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"f1c00f8b-2ca1-48b2-903e-d8d2e054385e\", \n\t\t\t\"providerId\": \"b906c925-238c-4f74-aa82-0f6e887b678e\", \n\t\t\t\"name\": \"Intelligent Concrete Chair\", \n\t\t\t\"score\": 45440\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"48b57d45-2526-41a3-a01b-19eb5a9f5ce1\", \n\t\t\t\"providerId\": \"0495fddd-f6cb-475d-89c4-b6903add2cd9\", \n\t\t\t\"name\": \"Unbranded Wooden Ball\", \n\t\t\t\"score\": 61907\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"e0689a5a-b67d-4dff-aabf-3ec2c554dd32\", \n\t\t\t\"providerId\": \"77814f57-f09e-4a77-88bf-db314d3cf3f6\", \n\t\t\t\"name\": \"Small Granite Towels\", \n\t\t\t\"score\": 64818\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"c1a819e6-ff82-447c-ab8a-96f8ce567f77\", \n\t\t\t\"providerId\": \"9310620f-03a8-48ee-a4a3-32cf3da028e9\", \n\t\t\t\"name\": \"Practical Granite Fish\", \n\t\t\t\"score\": 74207\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"1feed520-d505-42ab-9fc8-fd06c5f3e728\", \n\t\t\t\"providerId\": \"3e208a4c-414e-4377-89e0-6013322ae68c\", \n\t\t\t\"name\": \"Ergonomic Granite Cheese\", \n\t\t\t\"score\": 42699\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"6d06d0de-af65-4f67-8476-3b03845aa997\", \n\t\t\t\"providerId\": \"ffad350e-1615-44be-a41b-2bc6f9967dd5\", \n\t\t\t\"name\": \"Intelligent Concrete Sausages\", \n\t\t\t\"score\": 74351\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"b8488234-e926-45e3-8ca1-0d62083dc4db\", \n\t\t\t\"providerId\": \"21acbd64-cdf1-455b-b982-50873a1f34bd\", \n\t\t\t\"name\": \"Practical Cotton Chicken\", \n\t\t\t\"score\": 16763\n\t\t}\n\t]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthPaginateInfrastructureServices",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement $constraint:QueryStatement)\n{\n\tappHealthPaginateInfrastructureServices (query:$query constraint:$constraint)\n\t{\n\t\ttotal\n\t\tcount\n\t\trows\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthGetInfrastructureServices",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthGetInfrastructureServices (query: $query)\n\t{\n\t\tid\n\t\tname\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindInfrastructureService",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthFindInfrastructureService (query: $query)\n\t{\n\t\tid\n\t\tname\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindInfrastructureServiceById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($id:ID)\n{\n\tappHealthFindInfrastructureServiceById (id:$id)\n\t{\n\t\tid\n\t\tname\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthUpdateInfrastructureService",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthUpdateInfrastructureServiceInput!)\n{\n\tappHealthUpdateInfrastructureService (payload:$payload)\n\t{\n\t\tid\n\t\tname\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"providerId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"name\": \"Incredible Soft Pizza\", \n\t\t\"score\": 88069\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteInfrastructureServiceById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($id:ID!)\n{\n\tappHealthDeleteInfrastructureServiceById (id:$id)\n\t{\n\t\tid\n\t\tname\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteInfrastructureServices",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($query:QueryStatement)\n{\n\tappHealthDeleteInfrastructureServices (query: $query)\n\t{\n\t\tid\n\t\tname\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-service/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"providerId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"name\": \"Licensed Rubber Bacon\", \n\t\"score\": 54941\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-service/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-service",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-services/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "[\n\t{\n\t\t\"id\": \"c5416908-526e-4c5c-930b-4be835a85ce9\", \n\t\t\"providerId\": \"9edb8df1-d9e7-4a98-af34-a479b2596185\", \n\t\t\"name\": \"Gorgeous Rubber Table\", \n\t\t\"score\": 26480\n\t}, \n\t{\n\t\t\"id\": \"32db41ce-87e1-4f80-ac1c-de5884153c9c\", \n\t\t\"providerId\": \"b495d3a9-34a8-4b7d-8729-a42cdf70c8ff\", \n\t\t\"name\": \"Small Plastic Towels\", \n\t\t\"score\": 63387\n\t}, \n\t{\n\t\t\"id\": \"c8dea3e7-a224-4853-856f-1d367c9a79b7\", \n\t\t\"providerId\": \"606ca72e-13bd-4f63-98a5-52acaa9745ea\", \n\t\t\"name\": \"Awesome Wooden Fish\", \n\t\t\"score\": 91281\n\t}, \n\t{\n\t\t\"id\": \"41285eb5-7d57-4f73-b8a9-4d0a24bb2075\", \n\t\t\"providerId\": \"aa34b9aa-3814-4a1d-bd2c-f90956a54c23\", \n\t\t\"name\": \"Small Plastic Computer\", \n\t\t\"score\": 51348\n\t}, \n\t{\n\t\t\"id\": \"7b4836a6-db54-4c41-ad02-54a69aab5063\", \n\t\t\"providerId\": \"9e71b5ce-85cc-4a00-bb19-99f75289e5ce\", \n\t\t\"name\": \"Fantastic Wooden Bike\", \n\t\t\"score\": 49121\n\t}, \n\t{\n\t\t\"id\": \"7a1aff37-bb6b-43c8-a45b-56db784b2229\", \n\t\t\"providerId\": \"1f8cd4c4-33af-4075-bbb5-78b3fb9f9ae9\", \n\t\t\"name\": \"Refined Metal Sausages\", \n\t\t\"score\": 24400\n\t}, \n\t{\n\t\t\"id\": \"96e0945c-6d28-41b3-985a-40dc192686c0\", \n\t\t\"providerId\": \"fcde6956-887d-40ff-a4cf-eec4ac096202\", \n\t\t\"name\": \"Ergonomic Soft Sausages\", \n\t\t\"score\": 76421\n\t}, \n\t{\n\t\t\"id\": \"d72ab909-4bd1-4f15-be8c-6e4b949da947\", \n\t\t\"providerId\": \"f7864958-1c4d-46c8-9564-dbbb065a653d\", \n\t\t\"name\": \"Sleek Steel Bacon\", \n\t\t\"score\": 80881\n\t}, \n\t{\n\t\t\"id\": \"e156099b-e9ff-4efd-ac42-dac4ccbfef01\", \n\t\t\"providerId\": \"b25476d4-4740-4b16-ba1a-b4198ee5f1d1\", \n\t\t\"name\": \"Ergonomic Frozen Shoes\", \n\t\t\"score\": 39494\n\t}, \n\t{\n\t\t\"id\": \"e3b57c1f-4a25-48a0-8574-9213f372afa6\", \n\t\t\"providerId\": \"b0ff3c86-79fb-4dda-9a15-6fc521a831f9\", \n\t\t\"name\": \"Awesome Granite Shirt\", \n\t\t\"score\": 77223\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-services/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-services",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-services/paginate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-services/paginate",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+                        "infrastructure-services",
+                        "paginate"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-services/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-services/get",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-services",
+                        "get"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-service/find",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-service/find",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-service",
+                        "find"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-service/find/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-service/find/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-service",
+                        "find",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-service/update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"providerId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"name\": \"Generic Rubber Table\", \n\t\"score\": 49801\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-service/update",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-service",
+                        "update"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/infrastructure-service/delete/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-service/delete/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-service",
+                        "delete",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+		},
+        {
+			"name": "REST - app-health/infrastructure-services/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/infrastructure-services/delete",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"infrastructure-services",
+                        "delete"
+					]
+				}
+			},
+			"response": []
+		}
+    ],
+    "variable": [
+		{
+			"id": "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+			"key": "URL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

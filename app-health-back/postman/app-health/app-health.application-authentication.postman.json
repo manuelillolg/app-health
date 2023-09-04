@@ -1,0 +1,561 @@
+{
+    "info": {
+		"_postman_id"   : "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+		"name"          : "@app - app-health/application-authentication",
+		"schema"        : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+			"name": "GraphQL - appHealthCreateApplicationAuthentication",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthCreateApplicationAuthenticationInput!)\n{\n\tappHealthCreateApplicationAuthentication (payload:$payload)\n\t{\n\t\tid\n\t\tapplicationId\n\t\tauthenticationInterfaceId\n\t\ttotalUsers\n\t\tscore\n\t\tapplicationInfrastructureServiceId\n\t}\n}",
+                        "variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"authenticationInterfaceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"totalUsers\": 311229757, \n\t\t\"score\": 628928489, \n\t\t\"applicationInfrastructureServiceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthCreateApplicationAuthentications",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:[AppHealthCreateApplicationAuthenticationInput]!)\n{\n\tappHealthCreateApplicationAuthentications (payload:$payload)\n}",
+						"variables": "{\n\t\"payload\":\n\t[\n\t\t{\n\t\t\t\"id\": \"cc632782-bcfd-4cee-ac29-3af1725b66ac\", \n\t\t\t\"applicationId\": \"d3e2b58b-21e3-46a3-9ccd-d19540b608b2\", \n\t\t\t\"authenticationInterfaceId\": \"d1c876b5-e9a2-43cb-ab62-7dc8444ef19b\", \n\t\t\t\"totalUsers\": 266416748, \n\t\t\t\"score\": 189095004, \n\t\t\t\"applicationInfrastructureServiceId\": \"6e17dd89-dc1d-4008-b51d-75c7498849f3\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"1d849b2c-f5be-476d-bb30-5e6a28dad94b\", \n\t\t\t\"applicationId\": \"aec9d8f1-11cd-4a41-a694-1b545ead8eb7\", \n\t\t\t\"authenticationInterfaceId\": \"f5f842c0-ee33-44c4-96d9-e6387c796a28\", \n\t\t\t\"totalUsers\": 365411179, \n\t\t\t\"score\": 557481197, \n\t\t\t\"applicationInfrastructureServiceId\": \"0e5a4ece-ffde-4586-b2fe-fcec906a676f\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"31f799af-ecfb-41f1-a17e-3fa805fc011a\", \n\t\t\t\"applicationId\": \"34274c61-3a11-457a-b79a-d571c5b50e14\", \n\t\t\t\"authenticationInterfaceId\": \"bd470cd3-002d-4c47-bd0e-99e51089d44e\", \n\t\t\t\"totalUsers\": 887761157, \n\t\t\t\"score\": 485645443, \n\t\t\t\"applicationInfrastructureServiceId\": \"35227403-bbdb-4853-8091-f33b0d4e7dfc\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"b9507f7f-24e2-4fff-953a-107d84c5a6e6\", \n\t\t\t\"applicationId\": \"c1f10b24-8b63-4d34-9b62-0f99d46514ac\", \n\t\t\t\"authenticationInterfaceId\": \"022fb5fe-05ee-4c72-bad1-145460bc9bd3\", \n\t\t\t\"totalUsers\": 204255700, \n\t\t\t\"score\": 571504767, \n\t\t\t\"applicationInfrastructureServiceId\": \"67e9e656-f2f0-4b80-8624-5ea11f61bac6\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"69fa662d-cc41-4144-9c51-04f9351d5906\", \n\t\t\t\"applicationId\": \"6031cbf1-18ad-47a5-92f5-0544db857141\", \n\t\t\t\"authenticationInterfaceId\": \"101e8154-0054-4496-8d4c-c354a97223b1\", \n\t\t\t\"totalUsers\": 503379228, \n\t\t\t\"score\": 393469034, \n\t\t\t\"applicationInfrastructureServiceId\": \"22c61efe-30ef-4e1e-b745-1c19919eeb88\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"04daf610-a4bd-4e21-b937-4140ca084217\", \n\t\t\t\"applicationId\": \"81e587d0-83d6-4e3c-bac6-7a2b8b5109ec\", \n\t\t\t\"authenticationInterfaceId\": \"c1883544-f5fe-410c-a01c-5b756431eddd\", \n\t\t\t\"totalUsers\": 707904600, \n\t\t\t\"score\": 855744271, \n\t\t\t\"applicationInfrastructureServiceId\": \"a86564ab-da77-4e61-9142-a2efafa73e47\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"89b5fa23-16c0-45fb-a66b-f1c44058265f\", \n\t\t\t\"applicationId\": \"c7ba54e9-e1ea-4921-9422-43e9748ceb75\", \n\t\t\t\"authenticationInterfaceId\": \"8a10899b-1ee2-4793-9b24-81aa9e131144\", \n\t\t\t\"totalUsers\": 632628552, \n\t\t\t\"score\": 230375141, \n\t\t\t\"applicationInfrastructureServiceId\": \"34838517-36b9-44bc-a1af-022b893df39e\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"8acc2f89-b55d-4075-9c60-58bc477e1bcd\", \n\t\t\t\"applicationId\": \"a71794ea-ec70-40d1-b027-ffb9ffe64eaa\", \n\t\t\t\"authenticationInterfaceId\": \"b3c7b78f-1fc8-4dbf-b6fe-29a5939509bf\", \n\t\t\t\"totalUsers\": 691407143, \n\t\t\t\"score\": 159237725, \n\t\t\t\"applicationInfrastructureServiceId\": \"b82adb1c-0e44-45db-8f37-6af7d9e8125c\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"d2a7d099-9dd4-49ee-9b7a-7c2566b8e9ec\", \n\t\t\t\"applicationId\": \"53ef950a-cbbb-496d-a758-99b25524a2e0\", \n\t\t\t\"authenticationInterfaceId\": \"9e47758e-7e49-443b-94ae-01f08559acd3\", \n\t\t\t\"totalUsers\": 309139080, \n\t\t\t\"score\": 859797645, \n\t\t\t\"applicationInfrastructureServiceId\": \"3830db04-d534-4058-bf51-815be622fd6a\"\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"50ea5a1f-869b-4a9a-91bd-b82364a872c0\", \n\t\t\t\"applicationId\": \"06b2e129-fe15-49fb-a022-9d56dac3cb3b\", \n\t\t\t\"authenticationInterfaceId\": \"4605d01e-9634-44a3-96e6-882538fd6ba2\", \n\t\t\t\"totalUsers\": 814113787, \n\t\t\t\"score\": 671031752, \n\t\t\t\"applicationInfrastructureServiceId\": \"5afcd464-2ccd-4501-8b66-6940524aac61\"\n\t\t}\n\t]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthPaginateApplicationAuthentications",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement $constraint:QueryStatement)\n{\n\tappHealthPaginateApplicationAuthentications (query:$query constraint:$constraint)\n\t{\n\t\ttotal\n\t\tcount\n\t\trows\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthGetApplicationAuthentications",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthGetApplicationAuthentications (query: $query)\n\t{\n\t\tid\n\t\ttotalUsers\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindApplicationAuthentication",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthFindApplicationAuthentication (query: $query)\n\t{\n\t\tid\n\t\ttotalUsers\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindApplicationAuthenticationById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($id:ID)\n{\n\tappHealthFindApplicationAuthenticationById (id:$id)\n\t{\n\t\tid\n\t\ttotalUsers\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthUpdateApplicationAuthentication",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthUpdateApplicationAuthenticationInput!)\n{\n\tappHealthUpdateApplicationAuthentication (payload:$payload)\n\t{\n\t\tid\n\t\ttotalUsers\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"authenticationInterfaceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"totalUsers\": 668591702, \n\t\t\"score\": 812755609, \n\t\t\"applicationInfrastructureServiceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteApplicationAuthenticationById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($id:ID!)\n{\n\tappHealthDeleteApplicationAuthenticationById (id:$id)\n\t{\n\t\tid\n\t\ttotalUsers\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteApplicationAuthentications",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($query:QueryStatement)\n{\n\tappHealthDeleteApplicationAuthentications (query: $query)\n\t{\n\t\tid\n\t\ttotalUsers\n\t\tscore\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentication/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"authenticationInterfaceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"totalUsers\": 170085743, \n\t\"score\": 871545792, \n\t\"applicationInfrastructureServiceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentication/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentication",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentications/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "[\n\t{\n\t\t\"id\": \"a3dbbd47-d009-4b28-afd5-8636fccde941\", \n\t\t\"applicationId\": \"10416aac-96a5-4216-868c-ae15a89899ee\", \n\t\t\"authenticationInterfaceId\": \"eb5cfaa5-14fd-4b5e-b791-d803ec51a7dc\", \n\t\t\"totalUsers\": 292123412, \n\t\t\"score\": 378609916, \n\t\t\"applicationInfrastructureServiceId\": \"97547571-c141-432c-a712-fb862447cc25\"\n\t}, \n\t{\n\t\t\"id\": \"e2c2ca6d-51a4-4a6e-ab8c-b7b5c33c4979\", \n\t\t\"applicationId\": \"1d3d11b3-74c4-4595-ae92-f1811e51be55\", \n\t\t\"authenticationInterfaceId\": \"33670453-6631-4f8f-a1eb-e2def10f67d5\", \n\t\t\"totalUsers\": 235685269, \n\t\t\"score\": 346794041, \n\t\t\"applicationInfrastructureServiceId\": \"20895dfe-46da-4a4e-8fae-222343d5c5d1\"\n\t}, \n\t{\n\t\t\"id\": \"446329f0-c537-4b14-be01-45dd26b6df99\", \n\t\t\"applicationId\": \"00361607-279e-4a09-af41-63005a0d6825\", \n\t\t\"authenticationInterfaceId\": \"369576bc-d7db-41ab-a8f5-116b387d7a42\", \n\t\t\"totalUsers\": 747396726, \n\t\t\"score\": 119590530, \n\t\t\"applicationInfrastructureServiceId\": \"33bc8f23-bad7-494e-b3ec-8455c61e121b\"\n\t}, \n\t{\n\t\t\"id\": \"3acb4fe7-b103-426d-87bc-c4a09988b78f\", \n\t\t\"applicationId\": \"56612333-c5bc-4e18-87d7-ac6b83e5d0b4\", \n\t\t\"authenticationInterfaceId\": \"85786280-7493-4a8c-ac20-74fe4dc4e3ce\", \n\t\t\"totalUsers\": 901783444, \n\t\t\"score\": 423287052, \n\t\t\"applicationInfrastructureServiceId\": \"00a4c2ac-a69f-4bfe-a76c-f4d2b04e99d6\"\n\t}, \n\t{\n\t\t\"id\": \"be7d7559-6244-4c7d-a071-2eff115850c4\", \n\t\t\"applicationId\": \"eb915437-2a18-437a-819a-d94bc8303c1e\", \n\t\t\"authenticationInterfaceId\": \"611a8e4d-9db9-4a8b-ba61-2f86e76d8ee8\", \n\t\t\"totalUsers\": 174936378, \n\t\t\"score\": 874048675, \n\t\t\"applicationInfrastructureServiceId\": \"8c0193c9-9c56-4ec0-ac43-809cd0ac53dc\"\n\t}, \n\t{\n\t\t\"id\": \"3e6658e1-d6dd-4d6b-8d9f-093e8c8c5539\", \n\t\t\"applicationId\": \"a108113e-3484-4fc6-a9c6-c1ab7e649e62\", \n\t\t\"authenticationInterfaceId\": \"c0428311-08d1-48a6-b16c-10b2112945d5\", \n\t\t\"totalUsers\": 207172901, \n\t\t\"score\": 515455047, \n\t\t\"applicationInfrastructureServiceId\": \"f63e4467-911c-4143-8988-b91e35dd1f54\"\n\t}, \n\t{\n\t\t\"id\": \"6d831090-d2bd-4f8c-9937-78687678636e\", \n\t\t\"applicationId\": \"aa599723-aff5-4c20-b51d-51c61f4fc5e9\", \n\t\t\"authenticationInterfaceId\": \"80028ba2-4f72-4ef4-a40f-2f50be443e60\", \n\t\t\"totalUsers\": 601020862, \n\t\t\"score\": 853023119, \n\t\t\"applicationInfrastructureServiceId\": \"cd639a64-973a-435f-b244-e93c78081f71\"\n\t}, \n\t{\n\t\t\"id\": \"3bc4f959-9e4d-43e4-91f3-5146d0faa713\", \n\t\t\"applicationId\": \"19091ce5-e37c-4f13-ab6f-b58469b1e709\", \n\t\t\"authenticationInterfaceId\": \"824994e7-7ff5-4eb0-8f22-ede6f16a7c3b\", \n\t\t\"totalUsers\": 543828467, \n\t\t\"score\": 635860642, \n\t\t\"applicationInfrastructureServiceId\": \"2f31be2b-3373-43ae-bd5b-e0ea372879b3\"\n\t}, \n\t{\n\t\t\"id\": \"344c2d94-7a3c-4270-8a7d-cfa82d0a5e4f\", \n\t\t\"applicationId\": \"2c2e11aa-f5e1-474f-8671-a716729d2ab2\", \n\t\t\"authenticationInterfaceId\": \"69890de4-0652-4461-9040-26a42dae1469\", \n\t\t\"totalUsers\": 244170108, \n\t\t\"score\": 334235269, \n\t\t\"applicationInfrastructureServiceId\": \"0802943f-86b4-4201-ac7f-e32f745d7a48\"\n\t}, \n\t{\n\t\t\"id\": \"1898931a-0303-47c5-971b-e97177acff00\", \n\t\t\"applicationId\": \"66c3a1b4-8ae7-4d30-909b-fdd9b489ef80\", \n\t\t\"authenticationInterfaceId\": \"31f69520-e492-459d-bba4-81ccc4e8786c\", \n\t\t\"totalUsers\": 499617396, \n\t\t\"score\": 830348669, \n\t\t\"applicationInfrastructureServiceId\": \"2973eb29-7187-482e-b605-cf92d281d833\"\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentications/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentications",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentications/paginate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentications/paginate",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+                        "application-authentications",
+                        "paginate"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentications/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentications/get",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentications",
+                        "get"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentication/find",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentication/find",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentication",
+                        "find"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentication/find/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentication/find/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentication",
+                        "find",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentication/update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"applicationId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"authenticationInterfaceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"totalUsers\": 558883501, \n\t\"score\": 886821248, \n\t\"applicationInfrastructureServiceId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentication/update",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentication",
+                        "update"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application-authentication/delete/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentication/delete/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentication",
+                        "delete",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+		},
+        {
+			"name": "REST - app-health/application-authentications/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application-authentications/delete",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application-authentications",
+                        "delete"
+					]
+				}
+			},
+			"response": []
+		}
+    ],
+    "variable": [
+		{
+			"id": "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+			"key": "URL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

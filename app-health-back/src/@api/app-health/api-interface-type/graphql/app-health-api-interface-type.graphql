@@ -1,0 +1,92 @@
+
+type AppHealthApiInterfaceType
+{
+    id: ID!
+    name: GraphQLString!
+    score: GraphQLInt!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApiInterfaceTypeInput
+{
+    id: ID!
+    name: GraphQLString!
+    score: GraphQLInt!
+}
+
+input AppHealthUpdateApiInterfaceTypeByIdInput
+{
+    id: ID!
+    name: GraphQLString
+    score: GraphQLInt
+}
+
+input AppHealthUpdateApiInterfaceTypesInput
+{
+    id: ID
+    name: GraphQLString
+    score: GraphQLInt
+}
+
+type Query
+{
+    appHealthFindApiInterfaceType(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApiInterfaceType
+
+    appHealthFindApiInterfaceTypeById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApiInterfaceType
+
+    appHealthGetApiInterfaceTypes(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApiInterfaceType]!
+
+    appHealthPaginateApiInterfaceTypes(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApiInterfaceType(
+        payload: AppHealthCreateApiInterfaceTypeInput!
+    ): AppHealthApiInterfaceType
+
+    appHealthCreateApiInterfaceTypes(
+        payload: [AppHealthCreateApiInterfaceTypeInput]!
+    ): Boolean!
+
+    appHealthUpdateApiInterfaceTypeById(
+        payload: AppHealthUpdateApiInterfaceTypeByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApiInterfaceType
+
+    appHealthUpdateApiInterfaceTypes(
+        payload: AppHealthUpdateApiInterfaceTypesInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApiInterfaceType]!
+
+    appHealthUpsertApiInterfaceType(
+        payload: AppHealthUpdateApiInterfaceTypeByIdInput!
+    ): AppHealthApiInterfaceType
+
+    appHealthDeleteApiInterfaceTypeById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApiInterfaceType
+
+    appHealthDeleteApiInterfaceTypes(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApiInterfaceType]!
+
+}

@@ -1,0 +1,82 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: application-integration
+moduleNames: application-integrations
+aggregateName: AppHealthApplicationIntegration
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: name
+    type: varchar
+    maxLength: 255
+    nullable: false
+  - name: description
+    type: text
+    nullable: true
+  - name: sourceApplicationId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApplication
+      modulePath: app-health/application
+      key: id
+      field: sourceApplication
+      avoidConstraint: true
+  - name: targetApplicationId
+    type: id
+    length: 36
+    nullable: true
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApplication
+      modulePath: app-health/application
+      key: id
+      field: targetApplication
+      avoidConstraint: true
+  - name: apiInterfaceTypeId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApiInterfaceType
+      modulePath: app-health/api-interface-type
+      key: id
+      field: apiInterfaceType
+      avoidConstraint: true
+  - name: interfaceNumbers
+    type: int.unsigned
+    maxLength: 10
+    nullable: true
+  - name: modality
+    type: enum
+    enumOptions:
+      - UNIDIRECTIONAL
+      - BIDIRECTIONAL
+    nullable: false
+  - name: score
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: documentations
+    type: json
+    nullable: true
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

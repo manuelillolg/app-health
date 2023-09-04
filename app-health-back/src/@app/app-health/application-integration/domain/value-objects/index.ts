@@ -1,0 +1,13 @@
+export { AppHealthApplicationIntegrationId } from './app-health-application-integration-id';
+export { AppHealthApplicationIntegrationName } from './app-health-application-integration-name';
+export { AppHealthApplicationIntegrationDescription } from './app-health-application-integration-description';
+export { AppHealthApplicationIntegrationSourceApplicationId } from './app-health-application-integration-source-application-id';
+export { AppHealthApplicationIntegrationTargetApplicationId } from './app-health-application-integration-target-application-id';
+export { AppHealthApplicationIntegrationApiInterfaceTypeId } from './app-health-application-integration-api-interface-type-id';
+export { AppHealthApplicationIntegrationInterfaceNumbers } from './app-health-application-integration-interface-numbers';
+export { AppHealthApplicationIntegrationModality } from './app-health-application-integration-modality';
+export { AppHealthApplicationIntegrationScore } from './app-health-application-integration-score';
+export { AppHealthApplicationIntegrationDocumentations } from './app-health-application-integration-documentations';
+export { AppHealthApplicationIntegrationCreatedAt } from './app-health-application-integration-created-at';
+export { AppHealthApplicationIntegrationUpdatedAt } from './app-health-application-integration-updated-at';
+export { AppHealthApplicationIntegrationDeletedAt } from './app-health-application-integration-deleted-at';

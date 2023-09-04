@@ -1,0 +1,119 @@
+
+type AppHealthApplicationDatabase
+{
+    id: ID!
+    applicationId: ID!
+    application: AppHealthApplication
+    databaseId: ID!
+    database: AppHealthDatabase
+    version: GraphQLString!
+    size: GraphQLInt
+    score: GraphQLInt!
+    totalCollectionsTables: GraphQLInt
+    totalFields: GraphQLInt
+    applicationInfrastructureServiceId: ID!
+    applicationInfrastructureService: AppHealthApplicationInfrastructureService
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationDatabaseInput
+{
+    id: ID!
+    applicationId: ID!
+    databaseId: ID!
+    version: GraphQLString!
+    size: GraphQLInt
+    score: GraphQLInt!
+    totalCollectionsTables: GraphQLInt
+    totalFields: GraphQLInt
+    applicationInfrastructureServiceId: ID!
+}
+
+input AppHealthUpdateApplicationDatabaseByIdInput
+{
+    id: ID!
+    applicationId: ID
+    databaseId: ID
+    version: GraphQLString
+    size: GraphQLInt
+    score: GraphQLInt
+    totalCollectionsTables: GraphQLInt
+    totalFields: GraphQLInt
+    applicationInfrastructureServiceId: ID
+}
+
+input AppHealthUpdateApplicationDatabasesInput
+{
+    id: ID
+    applicationId: ID
+    databaseId: ID
+    version: GraphQLString
+    size: GraphQLInt
+    score: GraphQLInt
+    totalCollectionsTables: GraphQLInt
+    totalFields: GraphQLInt
+    applicationInfrastructureServiceId: ID
+}
+
+type Query
+{
+    appHealthFindApplicationDatabase(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplicationDatabase
+
+    appHealthFindApplicationDatabaseById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplicationDatabase
+
+    appHealthGetApplicationDatabases(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationDatabase]!
+
+    appHealthPaginateApplicationDatabases(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplicationDatabase(
+        payload: AppHealthCreateApplicationDatabaseInput!
+    ): AppHealthApplicationDatabase
+
+    appHealthCreateApplicationDatabases(
+        payload: [AppHealthCreateApplicationDatabaseInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationDatabaseById(
+        payload: AppHealthUpdateApplicationDatabaseByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplicationDatabase
+
+    appHealthUpdateApplicationDatabases(
+        payload: AppHealthUpdateApplicationDatabasesInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationDatabase]!
+
+    appHealthUpsertApplicationDatabase(
+        payload: AppHealthUpdateApplicationDatabaseByIdInput!
+    ): AppHealthApplicationDatabase
+
+    appHealthDeleteApplicationDatabaseById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplicationDatabase
+
+    appHealthDeleteApplicationDatabases(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationDatabase]!
+
+}

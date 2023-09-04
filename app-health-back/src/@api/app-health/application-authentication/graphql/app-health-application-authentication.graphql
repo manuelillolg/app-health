@@ -1,0 +1,107 @@
+
+type AppHealthApplicationAuthentication
+{
+    id: ID!
+    applicationId: ID!
+    application: AppHealthApplication
+    authenticationInterfaceId: ID!
+    authenticationInterface: AppHealthAuthenticationInterface
+    totalUsers: GraphQLInt
+    score: GraphQLInt!
+    applicationInfrastructureServiceId: ID!
+    applicationInfrastructureService: AppHealthApplicationInfrastructureService
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationAuthenticationInput
+{
+    id: ID!
+    applicationId: ID!
+    authenticationInterfaceId: ID!
+    totalUsers: GraphQLInt
+    score: GraphQLInt!
+    applicationInfrastructureServiceId: ID!
+}
+
+input AppHealthUpdateApplicationAuthenticationByIdInput
+{
+    id: ID!
+    applicationId: ID
+    authenticationInterfaceId: ID
+    totalUsers: GraphQLInt
+    score: GraphQLInt
+    applicationInfrastructureServiceId: ID
+}
+
+input AppHealthUpdateApplicationAuthenticationsInput
+{
+    id: ID
+    applicationId: ID
+    authenticationInterfaceId: ID
+    totalUsers: GraphQLInt
+    score: GraphQLInt
+    applicationInfrastructureServiceId: ID
+}
+
+type Query
+{
+    appHealthFindApplicationAuthentication(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplicationAuthentication
+
+    appHealthFindApplicationAuthenticationById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplicationAuthentication
+
+    appHealthGetApplicationAuthentications(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationAuthentication]!
+
+    appHealthPaginateApplicationAuthentications(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplicationAuthentication(
+        payload: AppHealthCreateApplicationAuthenticationInput!
+    ): AppHealthApplicationAuthentication
+
+    appHealthCreateApplicationAuthentications(
+        payload: [AppHealthCreateApplicationAuthenticationInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationAuthenticationById(
+        payload: AppHealthUpdateApplicationAuthenticationByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplicationAuthentication
+
+    appHealthUpdateApplicationAuthentications(
+        payload: AppHealthUpdateApplicationAuthenticationsInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationAuthentication]!
+
+    appHealthUpsertApplicationAuthentication(
+        payload: AppHealthUpdateApplicationAuthenticationByIdInput!
+    ): AppHealthApplicationAuthentication
+
+    appHealthDeleteApplicationAuthenticationById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplicationAuthentication
+
+    appHealthDeleteApplicationAuthentications(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationAuthentication]!
+
+}

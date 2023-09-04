@@ -1,0 +1,88 @@
+
+type AppHealthCustomer
+{
+    id: ID!
+    name: GraphQLString!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateCustomerInput
+{
+    id: ID!
+    name: GraphQLString!
+}
+
+input AppHealthUpdateCustomerByIdInput
+{
+    id: ID!
+    name: GraphQLString
+}
+
+input AppHealthUpdateCustomersInput
+{
+    id: ID
+    name: GraphQLString
+}
+
+type Query
+{
+    appHealthFindCustomer(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthCustomer
+
+    appHealthFindCustomerById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthCustomer
+
+    appHealthGetCustomers(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthCustomer]!
+
+    appHealthPaginateCustomers(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateCustomer(
+        payload: AppHealthCreateCustomerInput!
+    ): AppHealthCustomer
+
+    appHealthCreateCustomers(
+        payload: [AppHealthCreateCustomerInput]!
+    ): Boolean!
+
+    appHealthUpdateCustomerById(
+        payload: AppHealthUpdateCustomerByIdInput!
+        constraint: QueryStatement
+    ): AppHealthCustomer
+
+    appHealthUpdateCustomers(
+        payload: AppHealthUpdateCustomersInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthCustomer]!
+
+    appHealthUpsertCustomer(
+        payload: AppHealthUpdateCustomerByIdInput!
+    ): AppHealthCustomer
+
+    appHealthDeleteCustomerById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthCustomer
+
+    appHealthDeleteCustomers(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthCustomer]!
+
+}

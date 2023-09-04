@@ -1,0 +1,9 @@
+export { AppHealthApplicationLanguageId } from './app-health-application-language-id';
+export { AppHealthApplicationLanguageApplicationId } from './app-health-application-language-application-id';
+export { AppHealthApplicationLanguageLanguageId } from './app-health-application-language-language-id';
+export { AppHealthApplicationLanguageVersion } from './app-health-application-language-version';
+export { AppHealthApplicationLanguageScore } from './app-health-application-language-score';
+export { AppHealthApplicationLanguageCodeQualityScore } from './app-health-application-language-code-quality-score';
+export { AppHealthApplicationLanguageCreatedAt } from './app-health-application-language-created-at';
+export { AppHealthApplicationLanguageUpdatedAt } from './app-health-application-language-updated-at';
+export { AppHealthApplicationLanguageDeletedAt } from './app-health-application-language-deleted-at';

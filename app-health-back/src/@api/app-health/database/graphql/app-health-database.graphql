@@ -1,0 +1,103 @@
+enum AppHealthDatabaseType {
+    RELATIONAL
+    NO_SQL
+    KEY_VALUE
+    GRAPH
+}
+
+
+type AppHealthDatabase
+{
+    id: ID!
+    name: GraphQLString!
+    type: AppHealthDatabaseType!
+    versions: JSON!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateDatabaseInput
+{
+    id: ID!
+    name: GraphQLString!
+    type: AppHealthDatabaseType!
+    versions: JSON!
+}
+
+input AppHealthUpdateDatabaseByIdInput
+{
+    id: ID!
+    name: GraphQLString
+    type: AppHealthDatabaseType
+    versions: JSON
+}
+
+input AppHealthUpdateDatabasesInput
+{
+    id: ID
+    name: GraphQLString
+    type: AppHealthDatabaseType
+    versions: JSON
+}
+
+type Query
+{
+    appHealthFindDatabase(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthDatabase
+
+    appHealthFindDatabaseById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthDatabase
+
+    appHealthGetDatabases(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthDatabase]!
+
+    appHealthPaginateDatabases(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateDatabase(
+        payload: AppHealthCreateDatabaseInput!
+    ): AppHealthDatabase
+
+    appHealthCreateDatabases(
+        payload: [AppHealthCreateDatabaseInput]!
+    ): Boolean!
+
+    appHealthUpdateDatabaseById(
+        payload: AppHealthUpdateDatabaseByIdInput!
+        constraint: QueryStatement
+    ): AppHealthDatabase
+
+    appHealthUpdateDatabases(
+        payload: AppHealthUpdateDatabasesInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthDatabase]!
+
+    appHealthUpsertDatabase(
+        payload: AppHealthUpdateDatabaseByIdInput!
+    ): AppHealthDatabase
+
+    appHealthDeleteDatabaseById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthDatabase
+
+    appHealthDeleteDatabases(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthDatabase]!
+
+}

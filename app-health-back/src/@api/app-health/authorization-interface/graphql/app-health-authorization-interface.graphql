@@ -1,0 +1,92 @@
+
+type AppHealthAuthorizationInterface
+{
+    id: ID!
+    name: GraphQLString!
+    score: GraphQLInt!
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateAuthorizationInterfaceInput
+{
+    id: ID!
+    name: GraphQLString!
+    score: GraphQLInt!
+}
+
+input AppHealthUpdateAuthorizationInterfaceByIdInput
+{
+    id: ID!
+    name: GraphQLString
+    score: GraphQLInt
+}
+
+input AppHealthUpdateAuthorizationInterfacesInput
+{
+    id: ID
+    name: GraphQLString
+    score: GraphQLInt
+}
+
+type Query
+{
+    appHealthFindAuthorizationInterface(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthAuthorizationInterface
+
+    appHealthFindAuthorizationInterfaceById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthAuthorizationInterface
+
+    appHealthGetAuthorizationInterfaces(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthAuthorizationInterface]!
+
+    appHealthPaginateAuthorizationInterfaces(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateAuthorizationInterface(
+        payload: AppHealthCreateAuthorizationInterfaceInput!
+    ): AppHealthAuthorizationInterface
+
+    appHealthCreateAuthorizationInterfaces(
+        payload: [AppHealthCreateAuthorizationInterfaceInput]!
+    ): Boolean!
+
+    appHealthUpdateAuthorizationInterfaceById(
+        payload: AppHealthUpdateAuthorizationInterfaceByIdInput!
+        constraint: QueryStatement
+    ): AppHealthAuthorizationInterface
+
+    appHealthUpdateAuthorizationInterfaces(
+        payload: AppHealthUpdateAuthorizationInterfacesInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthAuthorizationInterface]!
+
+    appHealthUpsertAuthorizationInterface(
+        payload: AppHealthUpdateAuthorizationInterfaceByIdInput!
+    ): AppHealthAuthorizationInterface
+
+    appHealthDeleteAuthorizationInterfaceById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthAuthorizationInterface
+
+    appHealthDeleteAuthorizationInterfaces(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthAuthorizationInterface]!
+
+}

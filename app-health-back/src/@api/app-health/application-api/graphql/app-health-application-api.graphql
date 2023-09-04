@@ -1,0 +1,111 @@
+
+type AppHealthApplicationApi
+{
+    id: ID!
+    applicationId: ID!
+    application: AppHealthApplication
+    apiInterfaceTypeId: ID!
+    apiInterfaceType: AppHealthApiInterfaceType
+    score: GraphQLInt!
+    documentations: JSON
+    requestsPerDay: GraphQLInt
+    applicationInfrastructureServiceId: ID!
+    applicationInfrastructureService: AppHealthApplicationInfrastructureService
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationApiInput
+{
+    id: ID!
+    applicationId: ID!
+    apiInterfaceTypeId: ID!
+    score: GraphQLInt!
+    documentations: JSON
+    requestsPerDay: GraphQLInt
+    applicationInfrastructureServiceId: ID!
+}
+
+input AppHealthUpdateApplicationApiByIdInput
+{
+    id: ID!
+    applicationId: ID
+    apiInterfaceTypeId: ID
+    score: GraphQLInt
+    documentations: JSON
+    requestsPerDay: GraphQLInt
+    applicationInfrastructureServiceId: ID
+}
+
+input AppHealthUpdateApplicationApisInput
+{
+    id: ID
+    applicationId: ID
+    apiInterfaceTypeId: ID
+    score: GraphQLInt
+    documentations: JSON
+    requestsPerDay: GraphQLInt
+    applicationInfrastructureServiceId: ID
+}
+
+type Query
+{
+    appHealthFindApplicationApi(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplicationApi
+
+    appHealthFindApplicationApiById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplicationApi
+
+    appHealthGetApplicationApis(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationApi]!
+
+    appHealthPaginateApplicationApis(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplicationApi(
+        payload: AppHealthCreateApplicationApiInput!
+    ): AppHealthApplicationApi
+
+    appHealthCreateApplicationApis(
+        payload: [AppHealthCreateApplicationApiInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationApiById(
+        payload: AppHealthUpdateApplicationApiByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplicationApi
+
+    appHealthUpdateApplicationApis(
+        payload: AppHealthUpdateApplicationApisInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationApi]!
+
+    appHealthUpsertApplicationApi(
+        payload: AppHealthUpdateApplicationApiByIdInput!
+    ): AppHealthApplicationApi
+
+    appHealthDeleteApplicationApiById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplicationApi
+
+    appHealthDeleteApplicationApis(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationApi]!
+
+}

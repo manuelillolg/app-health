@@ -1,0 +1,55 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: application-infrastructure-service
+moduleNames: application-infrastucture-services
+aggregateName: AppHealthApplicationInfrastructureService
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: applicationId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApplication
+      modulePath: app-health/application
+      key: id
+      field: application
+      avoidConstraint: true
+  - name: infrastructureServiceId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthInfrastructureService
+      modulePath: app-health/infrastructure-service
+      key: id
+      field: infrastructureService
+      avoidConstraint: true
+  - name: averageCostPerYear
+    type: int.unsigned
+    maxLength: 10
+    nullable: true
+  - name: score
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []

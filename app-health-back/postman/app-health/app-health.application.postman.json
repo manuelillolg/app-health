@@ -1,0 +1,561 @@
+{
+    "info": {
+		"_postman_id"   : "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+		"name"          : "@app - app-health/application",
+		"schema"        : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+			"name": "GraphQL - appHealthCreateApplication",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthCreateApplicationInput!)\n{\n\tappHealthCreateApplication (payload:$payload)\n\t{\n\t\tid\n\t\ttechnicalSolutionId\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t}\n}",
+                        "variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"technicalSolutionId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"name\": \"Handcrafted Fresh Bacon\", \n\t\t\"description\": \"Saepe ab et quidem architecto fuga eum dolore aut. Nihil aut nobis sunt ipsum assumenda quae non harum et. Occaecati dicta distinctio dolor optio cupiditate.\", \n\t\t\"businessImpact\": \"Cum qui ut omnis qui aperiam explicabo. Similique sapiente autem saepe placeat veniam est enim voluptas perspiciatis. Officiis sed autem voluptatibus fuga amet eos. Similique corrupti et vel consequatur pariatur dolores doloribus.\", \n\t\t\"type\": 'SERVER', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"ox7kx581t10mscpm8p1kx4iv741on42h8cspkgb2t4nx8l4k1ae81aaxqotnyz6rg5j4svw5cmpk2melfk6rbj20of683qz4k24yp09l92yl9bk5evan2ku6pzvcjiir5hzgm934is9cyog9t4dkcc52mlenwtjv036g89dsko8aj05awdy0uwqgok2q65u5jr2e1caaxl6lj6cje2k546x69uf27qbfqxdgdpe4qd9t090osnqhs2fpzzue6h\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": true, \n\t\t\"costLicensesPerYear\": 812297930, \n\t\t\"requestsPerDay\": 827925207\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthCreateApplications",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:[AppHealthCreateApplicationInput]!)\n{\n\tappHealthCreateApplications (payload:$payload)\n}",
+						"variables": "{\n\t\"payload\":\n\t[\n\t\t{\n\t\t\t\"id\": \"b7199e38-5616-4d5a-bf20-41ee08d722e3\", \n\t\t\t\"technicalSolutionId\": \"9f56fb02-7e1b-4ee8-a536-611fdb3dff5b\", \n\t\t\t\"name\": \"Intelligent Steel Tuna\", \n\t\t\t\"description\": \"Ipsa ipsam voluptatum atque vero odit. Velit quibusdam voluptas. Quo autem voluptatem. Tenetur eos veritatis aut magni quo ut et. Sed fuga vel unde sequi dicta est.\", \n\t\t\t\"businessImpact\": \"Nihil adipisci expedita. Hic dolor doloremque qui. Sunt veritatis repudiandae commodi ad fugit est qui. Vero qui enim ut. Officia doloremque inventore rerum omnis repellendus natus accusantium aut rem. Explicabo quia commodi qui vero facere voluptatem reprehenderit.\", \n\t\t\t\"type\": 'EMBEDDED', \n\t\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\t\"architectureDiagram\": \"mzen7glyutnnikxajtwad8t89uu18n2f1guwyalgpflclt8hmiaj503aagjuhq0w21fsfeee9spdjheshq90wzjg7w44eb7d3hv4clnb91myjahbw0xjbapovff2yvt9dcwb57dkqxlxuapw87joawxeo42ll3n31n1u7b9ytsnyh098k1hqhlh4f36nzpqlufd60i3t8zge9fm4ejkac5odzbzzmarw23z9m9x9d7ydkqd91ge1b8suxmm60b\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": false, \n\t\t\t\"costLicensesPerYear\": 290357037, \n\t\t\t\"requestsPerDay\": 595939130\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"c596e88c-96d3-4034-a157-3beef22520ff\", \n\t\t\t\"technicalSolutionId\": \"35a095dd-78e6-4afc-8129-eddc03debbb2\", \n\t\t\t\"name\": \"Fantastic Wooden Soap\", \n\t\t\t\"description\": \"Qui sequi exercitationem. Sed pariatur corporis. Voluptatem cum vel suscipit sit deserunt veritatis vel. Corporis et earum impedit illo quia et ipsa voluptatem. Rerum tempora tenetur ut earum.\", \n\t\t\t\"businessImpact\": \"Ut odit iure accusantium vero voluptatem voluptates minima qui aperiam. Perspiciatis voluptas numquam inventore voluptatem debitis officiis rerum. Aut aperiam consequatur iste nemo ipsum quisquam veritatis voluptatem accusamus.\", \n\t\t\t\"type\": 'SERVER', \n\t\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\t\"architectureDiagram\": \"eunbdocptwx86ov9gw8tl131m4ylroi9jynczog5huhppl4g4wsj6hawjsdqcny1i69jcdzb17y2af70bdywc8z2yngcxb0cae7pevjwwv8sed1um6hvxza04ix3u4np87jy9fgijg72nidi79md6z2ebmu879wac1yq4g000crltlwfvslx1eyme2ii0e69rcg96h0b5xj3z1yzknu987wrbisme31f5bpi7o0462djjl3agbt48ixf2ignnr\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": false, \n\t\t\t\"costLicensesPerYear\": 332326039, \n\t\t\t\"requestsPerDay\": 358285717\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"daf20dd1-3e13-465f-9c56-39b048a258b1\", \n\t\t\t\"technicalSolutionId\": \"497f9422-9992-4207-b779-2fe8eb39f9e6\", \n\t\t\t\"name\": \"Licensed Frozen Computer\", \n\t\t\t\"description\": \"Laborum quis earum enim sunt harum quaerat doloribus autem et. Quo aut est unde fugit quasi rerum placeat vel quia. Dolore esse earum eligendi perferendis rerum ratione ut. Pariatur et quidem sed beatae modi voluptatem asperiores quis omnis. Velit voluptatem iure. Totam voluptas odio harum fugit.\", \n\t\t\t\"businessImpact\": \"Ipsa eum consequatur voluptatem consequatur sed ut quia animi. Ut est error ut dolor distinctio. Molestias quasi accusantium commodi illum et et laboriosam. Delectus praesentium cum animi hic ex. Ratione asperiores quia neque tenetur illum blanditiis eum. Quam quia rerum possimus libero perferendis accusantium porro non.\", \n\t\t\t\"type\": 'MOBILE', \n\t\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\t\"architectureDiagram\": \"op4q2ekp72lw4evuin841zmlengwuakmxu8gkym7wdufirqro8e9krz960lc8abh73xkj89h4x0mhb73ws1b0x67y4m6tta8a2oykbng73ff4ynidmot2mv5jdf1p0kf33rf0r58i2t7uu85xbunt6thk3t0ilerq37g9hveb0eoc4tre0sasidta2xu8n5zlnky4h8aj0lctbx14kdacnyok4caabyt2fl9kdg1j7brgj3193xahld0mvr601\", \n\t\t\t\"hasTenants\": false, \n\t\t\t\"hasLicensing\": false, \n\t\t\t\"costLicensesPerYear\": 203497044, \n\t\t\t\"requestsPerDay\": 457174582\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"cdac8f18-79d3-4364-a602-0ead3403cbb1\", \n\t\t\t\"technicalSolutionId\": \"21916c84-fffc-4e09-864a-998f7bafde59\", \n\t\t\t\"name\": \"Unbranded Fresh Keyboard\", \n\t\t\t\"description\": \"Accusamus necessitatibus necessitatibus et. Temporibus et vel mollitia consequatur a qui quidem. Vero sapiente architecto aut. Unde iusto deserunt nisi possimus aspernatur ea dicta soluta quod. Vel facilis suscipit vitae nemo tempore. Reprehenderit ea quibusdam et qui labore vel quasi omnis.\", \n\t\t\t\"businessImpact\": \"Ut sint magnam voluptatibus a. Vel perspiciatis repellat expedita itaque rerum nihil fugit doloremque quo. Qui laboriosam repudiandae reprehenderit repellat vitae ea. Error ea perspiciatis. Aut consequatur sit sed officia et aperiam impedit quos impedit. Aut deserunt et exercitationem occaecati autem ex nostrum aut sit.\", \n\t\t\t\"type\": 'EMBEDDED', \n\t\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\t\"architectureDiagram\": \"s6es1h9c08c70cysvbl0b9o3chsjqqsy77qtysva7c7r72yosmj74xvwubldso49ttp31xk8uj7toiy7zni3bjb34h7a817382ru8729g0so0ab0mb67qoelzlyd2k2lkled8ygeuz732g01ehc5rbtckvvweq68gc85l8kl0xix1pjt0wy81jlm3sd0ve5td9n0vvbqdy8d6rc5nfz0ukob8xfespjfu99ku77k4crbg85xvclmqrg8gjzgh9\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": true, \n\t\t\t\"costLicensesPerYear\": 861287732, \n\t\t\t\"requestsPerDay\": 859060575\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"f4adfbb8-3023-410d-897b-5e7c3264d74e\", \n\t\t\t\"technicalSolutionId\": \"71638865-6611-4ec3-a12c-c2940b15da32\", \n\t\t\t\"name\": \"Small Cotton Chips\", \n\t\t\t\"description\": \"Repudiandae harum voluptas cum. Officiis dolorum dolorem explicabo. Est ut maxime doloremque omnis qui sequi. Autem aut repellat.\", \n\t\t\t\"businessImpact\": \"Et rerum aut cum necessitatibus. Facere vel sint ea enim labore aperiam. Labore nesciunt amet omnis fuga nam ullam. Sapiente atque dicta ut.\", \n\t\t\t\"type\": 'SERVER', \n\t\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\t\"architectureDiagram\": \"gtb16fy7ewzp2jiwxq3obfpx6veg4z0z0bjlzx7nde50xamg49e1khk529eb5gt6olbc0sm8zwmsoxzzpmf7cnchx3vkvg6u024moir4m2i7qeukgz9ixnr2t9hk5l6yb2tb5n9q6mycwhv3r9yaj6fdwd9p0jzgxam2bdg3v2jdgetsazr87lq8qnahrgo2yr7j6575866qjdunsxr6m552qj556anq9oke4auslg9237586kodinnfi0x845\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": false, \n\t\t\t\"costLicensesPerYear\": 291825131, \n\t\t\t\"requestsPerDay\": 517021532\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"47255280-d87c-4f3b-84a0-a7c92667f7b9\", \n\t\t\t\"technicalSolutionId\": \"d1082ef0-efcb-44fc-8562-ee127a2084c8\", \n\t\t\t\"name\": \"Generic Plastic Bike\", \n\t\t\t\"description\": \"Voluptatem totam omnis architecto odit praesentium ut distinctio. Nulla ea est ut facere aut pariatur. Dolorum in repellat alias est labore earum a. Repudiandae quo enim veritatis aliquam et.\", \n\t\t\t\"businessImpact\": \"Labore sint saepe tempora exercitationem distinctio ab deserunt. Dignissimos delectus aut consequatur et culpa fugiat tempora. Et nostrum optio asperiores vero nulla sint est non omnis.\", \n\t\t\t\"type\": 'FRONTEND', \n\t\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\t\"architectureDiagram\": \"futj3t8eja5kdehp62egk35cjfweof8axughvqp8vycoo0jn745cad3n4v8svlg5nrp9h27kci2xmo658f4ad7vipgkh79h2ejnnnm6rojjg7oledl30idw39tguhf5tmmk0ozdy0e8lct2tmjrqcudl1gzoueve469iat6lpnrj6x9ol3rr2wpxwjc76nc54vkm9z59xjq3ib2imha4dgze6pv9k4javrb991kaaoq8saf5mhvi3ean286bw4\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": false, \n\t\t\t\"costLicensesPerYear\": 518808059, \n\t\t\t\"requestsPerDay\": 169876442\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"e0d7ff20-e3d6-42ca-973e-7c6c2175b357\", \n\t\t\t\"technicalSolutionId\": \"28c38465-23d2-4eac-9223-733d384f3da1\", \n\t\t\t\"name\": \"Gorgeous Concrete Chair\", \n\t\t\t\"description\": \"Et placeat veniam id placeat doloribus debitis nihil. Dolores in rem provident recusandae facere in beatae ut hic. Vero ullam vel ut.\", \n\t\t\t\"businessImpact\": \"Fugiat unde ea aut. Omnis nam incidunt voluptatem quia omnis. Cum eius officiis quos id iste voluptas id nisi repellendus. Harum sit aut quam et neque id. Sit adipisci ut quo. Non distinctio sed laborum.\", \n\t\t\t\"type\": 'FRONTEND', \n\t\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\t\"architectureDiagram\": \"bqclfd0zev8864qn9j8zpryrf66zwylqrl1r4ltc3w6v4pkyjsbjeuz65db79a4zdbzajnn0yz2g7c22h903989hvq0v3cghmikwgmuty4kpr3us6zqmm7git7oa9nr4vooamur8p4syohsv2pmq1zcby0sl27bj5000ny9ozl4x40rnsdvk91oyjur60r688k7dj4ip1rovl8vy907nxxdrjbsh3c1wq9eue4xyi5nz12wlo9e25m0dwnqmti\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": true, \n\t\t\t\"costLicensesPerYear\": 590731181, \n\t\t\t\"requestsPerDay\": 203042194\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"b0f26118-729a-40c1-8086-cbeb6369bef3\", \n\t\t\t\"technicalSolutionId\": \"6ac687e1-f5c3-4da7-a52a-90b80b5523a4\", \n\t\t\t\"name\": \"Unbranded Fresh Pants\", \n\t\t\t\"description\": \"Iure natus reprehenderit omnis omnis est. Et qui natus odio quo nihil reprehenderit. Et eaque laborum totam. Ducimus placeat non quisquam unde facere exercitationem tenetur nam ea. Totam quia similique.\", \n\t\t\t\"businessImpact\": \"Aut sit optio beatae. Reprehenderit minima sit doloribus cupiditate aut iste. Alias enim dignissimos officiis atque ut et sunt. Nulla non a laborum aut. Numquam libero atque dolorum at. Fugit odio non ipsum.\", \n\t\t\t\"type\": 'MOBILE', \n\t\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\t\"architectureDiagram\": \"u2e41865me0u05d1tx9uxf4hjkh9oqzmq5dcb6i5tem7jmfkowieg8xvd4qoda43dfdgo6myjr1qr5keqaiohd6clbtorzj3ck2ysuma7kocckhqrfnf6qpj09noavzxqvdv8rrndix8xax2kx6r8f9be2o1xa1d1mwvl2pu1j6ws832efpj1brsoio2zxfrcymtpccxvh2orxbr60mr7nz78t21ubxkz2dqdneyg031qkrhfy74ffnklokem7\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": true, \n\t\t\t\"costLicensesPerYear\": 209027658, \n\t\t\t\"requestsPerDay\": 157543202\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"e97bf45d-f4f2-4a2a-897a-a6514c7f8ae9\", \n\t\t\t\"technicalSolutionId\": \"dcabad44-1832-4d95-97c0-c0bb01a58928\", \n\t\t\t\"name\": \"Ergonomic Wooden Chips\", \n\t\t\t\"description\": \"Nihil dicta esse. Excepturi sit sunt in in autem assumenda. Rem deleniti odio magni minus. Sint et est qui. Suscipit voluptatem molestiae rem aut.\", \n\t\t\t\"businessImpact\": \"Eligendi nobis quibusdam. Ut dignissimos repellat inventore. Magni sunt culpa dolorem maxime. Magnam qui quia et nihil. Facere asperiores distinctio enim aliquid quibusdam similique non reprehenderit.\", \n\t\t\t\"type\": 'EMBEDDED', \n\t\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\t\"architectureDiagram\": \"4bpl1193bk490985hhkr76xj5j41k84kyzfvnb2w8j3rjqbhwnqpm3i4faqgtiyncunopkjteyorblf8st4snwyft93bzl5jlkwk4crilcjm0o4xguf2ivmln43jzgu4c55cjap7sly2eqv8jxtr33i94iuu62zgpoaer488go24psa8jkqlt7j8v0xym4qo4l46dmbwz3yeksnvh8hlbghhwtytlknnt3zxcifrpc8q545ne97obfszb8v337\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": false, \n\t\t\t\"costLicensesPerYear\": 914782487, \n\t\t\t\"requestsPerDay\": 371078201\n\t\t}, \n\t\t{\n\t\t\t\"id\": \"a5c254bb-edac-4aa4-9710-a0fdbc914d76\", \n\t\t\t\"technicalSolutionId\": \"b792f7be-08a2-4770-914f-6baae12157f2\", \n\t\t\t\"name\": \"Fantastic Fresh Cheese\", \n\t\t\t\"description\": \"Voluptates nisi sequi sint in tempore. Aperiam possimus expedita impedit cupiditate doloribus aliquid. Dolore cumque explicabo at nam at ex impedit maxime.\", \n\t\t\t\"businessImpact\": \"Quas tenetur et eos assumenda facere. Delectus similique molestiae voluptatibus dolores omnis minima. In ut quam ut. At dolore tenetur doloremque.\", \n\t\t\t\"type\": 'SERVER', \n\t\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\t\"architectureDiagram\": \"ior9rsa82uksm1nu0t4u10d6xnzdwzgc7gyojzml1pnc5j53j4xn2ln1vxoil7p8ecmdc2x95chnybo8fxam459b6kk8c2aonbhffq1liqccn6tiatdp94n87etaainh8k2rr6dbsqfbr7yyl7g160j1f94u2xnfpqu5py0zyekmx2ma0ieo335wee33ijv9bz3gge8fadjgum4t5olwxsbpcriiyvkvgq105a7bglyvin8ei5t7zxxs5lmhak\", \n\t\t\t\"hasTenants\": true, \n\t\t\t\"hasLicensing\": true, \n\t\t\t\"costLicensesPerYear\": 671740969, \n\t\t\t\"requestsPerDay\": 875786650\n\t\t}\n\t]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthPaginateApplications",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement $constraint:QueryStatement)\n{\n\tappHealthPaginateApplications (query:$query constraint:$constraint)\n\t{\n\t\ttotal\n\t\tcount\n\t\trows\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthGetApplications",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthGetApplications (query: $query)\n\t{\n\t\tid\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindApplication",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($query:QueryStatement)\n{\n\tappHealthFindApplication (query: $query)\n\t{\n\t\tid\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthFindApplicationById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($id:ID)\n{\n\tappHealthFindApplicationById (id:$id)\n\t{\n\t\tid\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthUpdateApplication",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($payload:AppHealthUpdateApplicationInput!)\n{\n\tappHealthUpdateApplication (payload:$payload)\n\t{\n\t\tid\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"payload\":\n\t{\n\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"technicalSolutionId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\t\"name\": \"Fantastic Plastic Bike\", \n\t\t\"description\": \"Architecto dolorem blanditiis dolores totam. Sit sint ipsum. Quo labore rerum.\", \n\t\t\"businessImpact\": \"Qui ipsum quibusdam facere soluta porro. Consectetur cum nobis eum et iure quaerat iste. Beatae culpa voluptatem cumque commodi molestiae quia. Provident aut nisi hic praesentium.\", \n\t\t\"type\": 'FRONTEND', \n\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\"architectureDiagram\": \"ezb7i3ef22tamp453lw7rbo5vknhj3bktlunon79eeiwos9rosgq1uqkqutdidmm8xfaup10sw2hl6un9mrxnnwcc7g3lwk8vkxq0ojfral3q5xsvruy2s4d4g5kg5mqdkjqi41gxs87g2092trbnuuyouvk8olftmbmbgsp944ksr5fk8c415vg754x79gww4csfog6547a0zzss4jc3rgety9b72v9jy96f14l7ij9hzozs0fi8fasjagwzs\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": true, \n\t\t\"costLicensesPerYear\": 833590854, \n\t\t\"requestsPerDay\": 591631165\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteApplicationById",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($id:ID!)\n{\n\tappHealthDeleteApplicationById (id:$id)\n\t{\n\t\tid\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "GraphQL - appHealthDeleteApplications",
+			"request": {
+				"method": "POST",
+				"header": [
+                ],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($query:QueryStatement)\n{\n\tappHealthDeleteApplications (query: $query)\n\t{\n\t\tid\n\t\tname\n\t\tdescription\n\t\tbusinessImpact\n\t\ttype\n\t\treleaseDate\n\t\tarchitectureDiagram\n\t\thasTenants\n\t\thasLicensing\n\t\tcostLicensesPerYear\n\t\trequestsPerDay\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}",
+						"variables": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/graphql",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"technicalSolutionId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"name\": \"Incredible Metal Salad\", \n\t\"description\": \"Corrupti cum accusantium est error eligendi. Voluptates aut autem et et culpa qui. Eum et sunt nulla recusandae. Distinctio blanditiis ad est et id qui inventore iure labore. Labore dolor architecto. Quaerat laboriosam sed.\", \n\t\"businessImpact\": \"Aut non libero laborum est ad eum aperiam est. Sed vel consectetur consequatur eius. Neque vitae incidunt maxime ea harum eum quia. Quas ipsum nulla numquam iure corrupti iusto aliquid dolorem quidem.\", \n\t\"type\": 'MOBILE', \n\t\"releaseDate\": \"2023-08-23\", \n\t\"architectureDiagram\": \"3g9xyvvq49awp6imvtn6lqr49qdeh4l7mj27nxmsabcxeywx74hy6o3afpnay0ufq70bjiqzvdwqy4gz2ql96iglgypwcgztuk9gryfdavus6zdk6tcred1ferdj07ug7g3anqj7dcty5xa4trn3lwp5b8gifpzq800rgddzaq8pojpo7o8g2ceznv0ccqek88pwn9vma9sdxn96yzyy36db1pke4pyuhzqxvcddmmtru3m2hpj43wyw3sohsx\", \n\t\"hasTenants\": false, \n\t\"hasLicensing\": false, \n\t\"costLicensesPerYear\": 756945653, \n\t\"requestsPerDay\": 752373505\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/applications/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key"   : "Content-Type",
+						"name"  : "Content-Type",
+						"type"  : "text",
+						"value" : "application/json"
+					}				],
+				"body": {
+					"mode"  : "raw",
+					"raw"   : "[\n\t{\n\t\t\"id\": \"061b2f7f-9f69-4706-bed1-7e8b74aace01\", \n\t\t\"technicalSolutionId\": \"d3b3fe13-ebfb-4127-a10a-8aa1fc3251e5\", \n\t\t\"name\": \"Awesome Cotton Mouse\", \n\t\t\"description\": \"Nisi nobis numquam mollitia. Vitae eos sint. Hic porro aliquam. Omnis est ad. Qui dolorum voluptatem qui eum tempora sit dolorem unde illum.\", \n\t\t\"businessImpact\": \"Eos quae temporibus non. Aut consequuntur ducimus non. Occaecati repellat voluptatum deserunt perferendis. Repudiandae laborum atque enim rerum tenetur qui voluptas voluptatum minima. Ut officia est iste est facere nisi sequi voluptatibus. Et enim rerum omnis quasi aut cum quisquam ut.\", \n\t\t\"type\": 'FRONTEND', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"x51i42833q9q7mj5fgv454pqj1unl7cgdbd6369tv20yvdh43xy3w1h4lfwdlabdueqz7ckqqfhf8qpvi0co9a4ymug0jn1uwhrbta3upe9hgkblx8z7kmbwalmo6ijuz9c30k9j5b2ewibkemc8n0l7yhl8wtih57a5pe505gnd4aej6452v86iyd051efourga4i4ebutghj2b4oe3oeuyll74vjkciohoz60kxqnka6yqxu79yqahoxeabd\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": false, \n\t\t\"costLicensesPerYear\": 330410382, \n\t\t\"requestsPerDay\": 489613693\n\t}, \n\t{\n\t\t\"id\": \"d00654dc-bbc7-44d7-8f61-85e377c7d057\", \n\t\t\"technicalSolutionId\": \"dc46464a-56dd-403e-adeb-7f3d2fbce6e6\", \n\t\t\"name\": \"Incredible Fresh Chips\", \n\t\t\"description\": \"Consequatur mollitia est sequi quis quia sint ut. Ad molestiae eius. Impedit consequatur explicabo. Rerum eos et autem magni libero labore eius aut et.\", \n\t\t\"businessImpact\": \"Culpa et accusamus sed nihil. Dolores ea dolor quia sunt rem commodi explicabo. Repellat consequatur non ea sed voluptatibus omnis quod quos. Illum in ipsam dignissimos voluptatem alias. Fugit odit enim id nam.\", \n\t\t\"type\": 'SERVER', \n\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\"architectureDiagram\": \"8hhzw671nm40ukss26gjz6j499bkwg384yf6fhopy8bj5rclouaqc1og6mpf5dv2ppstyzp8a9oe3j76cwh0hoa1e5p902jd3fipkdqlss85fcse76l9cx2o6og6a6n8l7m8wd0x3y10a7oxfjes7mapazcw65in8bg6b29rqb0qvim4uq0y1xgx3ybadwrs845ns0ql5rg74nx5bu5r0jbkseyx343f2fginp7qk6r46d53cuw04yxbf8utjq\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": false, \n\t\t\"costLicensesPerYear\": 268707271, \n\t\t\"requestsPerDay\": 390333950\n\t}, \n\t{\n\t\t\"id\": \"5e9d14e5-5b39-4dd8-ab76-d74016f199b8\", \n\t\t\"technicalSolutionId\": \"2dae61c4-b261-414f-b361-a7e88e5b7f56\", \n\t\t\"name\": \"Ergonomic Wooden Mouse\", \n\t\t\"description\": \"Sapiente debitis perferendis. Eos qui dolores aspernatur tempora rerum officia dolorem ipsam labore. Et fuga rerum in eum id.\", \n\t\t\"businessImpact\": \"Dolorem architecto in molestiae qui. Sint error illum. Quia et est rem porro vel sit repellat.\", \n\t\t\"type\": 'MOBILE', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"bsna0vhafzqpdpi2nnknrc9yqtbutrsi6oxqq7q3wx3l906ni07898ubyrhb05iae7dck9x3k4ecrgsp0zl6cv48v9cm013arrsw1d2xrikybf1me6lu2ncpj7tipq9bmymxml9lw0v4dpll98fyogkjnlbop4m1ilez96h0w9hmqyzw4vpnye1ex185e0axkjtivivvht1sg2s8jhcgutd30bq0corikufq5s2mm70zbdx2jyxz0bqv6hkwp7\", \n\t\t\"hasTenants\": false, \n\t\t\"hasLicensing\": true, \n\t\t\"costLicensesPerYear\": 248054796, \n\t\t\"requestsPerDay\": 983660482\n\t}, \n\t{\n\t\t\"id\": \"5ef04c54-8fa6-4fa3-a8e9-f6bd5aba3692\", \n\t\t\"technicalSolutionId\": \"32092608-3e9d-4c60-85d6-c181f23fc77f\", \n\t\t\"name\": \"Unbranded Fresh Computer\", \n\t\t\"description\": \"Accusantium accusamus cupiditate sit occaecati ducimus ipsum. Ea enim ducimus qui amet vero ut quibusdam minima distinctio. Qui autem commodi sequi sint. Accusantium neque illum dolores et ut nihil. Blanditiis totam reprehenderit quasi minima dolorem magnam illo.\", \n\t\t\"businessImpact\": \"Laborum delectus voluptas architecto distinctio quis totam est. Exercitationem excepturi quidem officiis neque exercitationem. Aut vel perferendis est eum. Voluptatem eaque enim provident.\", \n\t\t\"type\": 'MOBILE', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"w816e8yyr6nb0oygb65fctdsvdwf6sq60ou23pl8pnb7iaap59vhbqrx172h83ru80fqnaca0d2x5exz6bjiqxsbtod473y8i62qfoy9v93yyokibrc0bmnb6k1swhgfoy1wtgwz71hloyym0pru4cxfy0fqe70b6wqx8rs89pfvt351qvaw8hmgbdszb0xy17bwq8tkexdfr4jp7r7arxhbqo75dhdbsd6xpcy91bnx0vv9g5nneomgvw7zrj\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": false, \n\t\t\"costLicensesPerYear\": 473631945, \n\t\t\"requestsPerDay\": 736561772\n\t}, \n\t{\n\t\t\"id\": \"6c10aa9d-b314-4d16-a825-3305bc14e8af\", \n\t\t\"technicalSolutionId\": \"e3eef42f-8bf2-42b3-b325-857809809ac2\", \n\t\t\"name\": \"Refined Concrete Chair\", \n\t\t\"description\": \"Quod et hic sit labore ut repellendus. Porro iusto eaque quae. Aperiam est quis ea et est excepturi. Veniam delectus quae ab. Qui debitis dolores. Magni pariatur suscipit a architecto neque.\", \n\t\t\"businessImpact\": \"Alias nesciunt quis id qui eveniet. Voluptate dolores in illum quaerat animi fugiat repellendus quo aliquam. At cupiditate accusamus ex consequatur. Ex vel pariatur consectetur itaque. Aperiam ipsum harum voluptas nesciunt non.\", \n\t\t\"type\": 'EMBEDDED', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"mcfwhoukk9xvzhvui8uje5sevdmk0dzki4u3enlmbamgqt0w352uzgwfjujcihjnrkn17955r4mjpfp6c7yswvxpmqzu0gkd5wn7m0vp1a4ljuiglv1ocq33b2vd4d6axlfw7zolxhr88thmvvba0r2um8fdowiauq5kh8b19d4qmvytqm2zdungm2wvpc9xicuxb82r87wbhzul1ms5hzih665qajfv4hebtxvv96itlzd762e0kr8ww76tr4\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": true, \n\t\t\"costLicensesPerYear\": 658078505, \n\t\t\"requestsPerDay\": 737608626\n\t}, \n\t{\n\t\t\"id\": \"515be36d-949e-46a5-adc4-697bffe5a8ff\", \n\t\t\"technicalSolutionId\": \"5edb03fb-bd0c-4401-bcd2-4a8b0fd93bac\", \n\t\t\"name\": \"Unbranded Cotton Cheese\", \n\t\t\"description\": \"Modi nihil nemo ipsum rerum adipisci reprehenderit repellendus. Nihil odit dolorem. Sed aut omnis dolorum quisquam. Aut sit velit rem cumque ut ab architecto nulla in. Dolor rerum quidem reprehenderit tempora voluptatem earum. Nihil aut aliquam numquam quaerat placeat.\", \n\t\t\"businessImpact\": \"Ipsam aspernatur sed eos. Delectus neque excepturi aut deserunt rem. Nobis iste dolore architecto voluptatum et molestias. Et tempora consequuntur odio deleniti itaque. Sapiente veritatis repudiandae ab. Corporis et vel fugit ea.\", \n\t\t\"type\": 'SERVER', \n\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\"architectureDiagram\": \"n0nvh4bwc62rerqcffdxrl0tjrbozo5hdmjl7zya63o1aikr5i6zdkf50kf0pu1sxh2a75mmhve3u5omovwujvf26s6ccbwuxqkeweggj0vokq6630mz3f2zzoi523n5hbeuahwa84fzyp7zqpric6oepmqmqnfnls3ehpby08cz5tvnaco2lbhinwz9ijnb0ex89bbwdh17tj1evjofkpug1nw13itlag2u72ijf330gvpo9dk0dxoaj0acjk\", \n\t\t\"hasTenants\": false, \n\t\t\"hasLicensing\": false, \n\t\t\"costLicensesPerYear\": 786857941, \n\t\t\"requestsPerDay\": 879258077\n\t}, \n\t{\n\t\t\"id\": \"28a46b88-9244-450a-9532-49912c594733\", \n\t\t\"technicalSolutionId\": \"dd21c021-ede1-401a-a982-3f155f98b982\", \n\t\t\"name\": \"Incredible Rubber Gloves\", \n\t\t\"description\": \"In in nihil nesciunt rerum iusto. Est inventore rerum perspiciatis aut. Sapiente cumque ea quam quo labore minima vitae sunt. Esse harum voluptatibus unde expedita.\", \n\t\t\"businessImpact\": \"Adipisci dolorem nulla commodi. Minima accusantium ducimus tenetur. Est sed doloremque omnis.\", \n\t\t\"type\": 'SERVER', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"zochwg3szxs6l7dfmi4ctigyatj1u4dkkgzb1xxbxr0wubnuj72kzw07yf0ywkecom4p2m1z05uxyccqc2qqu9tbf149uptz42qqxbgk59khnopku6mwckzzvr9wpz5ydrv80p04d6w7n6l6ytj2pujt69si9d9nxx8h7ayf2rrtwpn62qygl0g05xs0ral97dmfmxzg064khgbbu03y1jfva9e945yf2n971qqt68sd8313itf3gki7r1cben\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": false, \n\t\t\"costLicensesPerYear\": 781474801, \n\t\t\"requestsPerDay\": 246215681\n\t}, \n\t{\n\t\t\"id\": \"305834e8-0f4d-4ea8-b0fe-1abaad63db9a\", \n\t\t\"technicalSolutionId\": \"11335a18-3bb5-4b93-974d-8caadba1b64c\", \n\t\t\"name\": \"Small Fresh Chair\", \n\t\t\"description\": \"Laborum atque dolorum et atque. Sed nisi eum sapiente nemo sit molestias quae. Qui reiciendis quia nihil rerum odit odio minus amet consectetur. Autem modi amet nam fuga voluptas odio. Sed ipsam consequatur. Maiores consequatur similique unde enim.\", \n\t\t\"businessImpact\": \"Cum nostrum vitae cupiditate nulla. Voluptates in ducimus nemo sed. Sed eum quis. Laborum ducimus sit numquam consequatur quis molestiae ullam. Non et doloremque nihil facere ex dolores modi. Cumque quia veritatis nulla tempore eius laudantium quam.\", \n\t\t\"type\": 'EMBEDDED', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"cqfeja57khhux5nflryh1omim1cqsn06zr30tle6h1zi8v9iux1sz2iv14s3a2wzo4a7resreqr4ygdyiidj6dtn9hidbmzdzly9h4q7lfgtvoez7ij50yg5tq1pfrg28t1wp5lg0zjujfh6j84r8yxmzk2v8gev3ews1qyvjo4sw82q9veotgrxchc28n7toy2xqztp9bxxrbq836tmphl8yidb5e3i66qxm6lnmjk3lcp8ozoy00s3fjhgn3\", \n\t\t\"hasTenants\": false, \n\t\t\"hasLicensing\": true, \n\t\t\"costLicensesPerYear\": 217329731, \n\t\t\"requestsPerDay\": 699484914\n\t}, \n\t{\n\t\t\"id\": \"1a0bfbfb-17b2-403c-8d83-eb47821e894f\", \n\t\t\"technicalSolutionId\": \"7072c23f-ecbf-417d-9e45-4923f1d97d70\", \n\t\t\"name\": \"Rustic Frozen Hat\", \n\t\t\"description\": \"In earum quaerat accusantium saepe veritatis pariatur quae. Ut non aliquid. Ut qui vel qui nihil quia repellendus enim impedit.\", \n\t\t\"businessImpact\": \"Dolore necessitatibus est sed non sed voluptatem quia aut dolores. Ipsam tenetur modi. Et recusandae a. Unde natus ut. Eum quia quibusdam mollitia debitis deleniti ullam maiores.\", \n\t\t\"type\": 'FRONTEND', \n\t\t\"releaseDate\": \"2023-08-24\", \n\t\t\"architectureDiagram\": \"7m7nejsvceefays4chwdabzpr9bbu8dshnm3kf8asvcybkmtuijufck2hfs35zigvcu7shj6j2yuoptq35fkkikic9ingg3xfqmzrtbcd177ewh8zf09idtffuyph7nrruqmj1hl12x7511wnmjx3xnsp8n5wuewzzsi6ehge30y5oml1qr4d9ryn4l5pozf3g1i3r5li1cq00c06d1s27hbe1sl1wu5cw7oxxrbgcel9lmr7r49sncpkx9rk0\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": false, \n\t\t\"costLicensesPerYear\": 582219383, \n\t\t\"requestsPerDay\": 326503981\n\t}, \n\t{\n\t\t\"id\": \"95d597c6-4807-4149-b9c1-4771c37d0a2b\", \n\t\t\"technicalSolutionId\": \"f42ced45-d373-4a47-aae7-eeabd0bbe24d\", \n\t\t\"name\": \"Tasty Cotton Hat\", \n\t\t\"description\": \"Illum magni aliquid reiciendis ea aut libero placeat deleniti aut. Sapiente doloribus consequatur nulla laborum. Eum eveniet hic esse aperiam odit. Non molestias possimus. Temporibus in fugiat ea recusandae quod exercitationem magnam. Vitae est ut iusto.\", \n\t\t\"businessImpact\": \"Beatae tenetur amet consectetur. Fugiat vel id commodi nulla optio harum non consequatur. Delectus omnis sit enim suscipit nam. Enim eos voluptatem voluptatem hic pariatur id aliquid voluptas aspernatur. Velit mollitia illum eaque quis cumque vel. Ea quo sed eius corrupti exercitationem laboriosam sint nisi est.\", \n\t\t\"type\": 'MOBILE', \n\t\t\"releaseDate\": \"2023-08-23\", \n\t\t\"architectureDiagram\": \"8ph3eazlher04hjjd95a9eqq99pky9bf64ucxbaiusmt5j3zvmobk081fdracyp2izeyqpw478hkb13j31tku7xero95c1gp1c9zxpmbfm914cjuknmfkkpljn22y0qmjf8vgg0renz84othbwlbhd4rfo12szyb353bx7b8b4f5g8hjpebjmkrnzkvkya807wdccchs5lwzi3vbjpgy4bvbcp8n8idxyymq6xrbers4rzzyte2jyabrne26xe\", \n\t\t\"hasTenants\": true, \n\t\t\"hasLicensing\": true, \n\t\t\"costLicensesPerYear\": 281040531, \n\t\t\"requestsPerDay\": 269364379\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/applications/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"applications",
+                        "create"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/applications/paginate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"offset\": 0,\n\t\t\"limit\": 10\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/applications/paginate",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+                        "applications",
+                        "paginate"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/applications/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{ \n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/applications/get",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"applications",
+                        "get"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application/find",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application/find",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application",
+                        "find"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application/find/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application/find/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application",
+                        "find",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application/update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw"   : "{\n\t\"id\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"technicalSolutionId\": \"5b19d6ac-4081-573b-96b3-56964d5326a8\", \n\t\"name\": \"Awesome Granite Salad\", \n\t\"description\": \"Maiores quas laboriosam blanditiis sunt quo nihil rerum. Nobis consequuntur quis ad rerum ea eveniet velit illo. Cum aut dolor aspernatur.\", \n\t\"businessImpact\": \"Quas expedita aut unde. Recusandae consequatur ex. A ad dolore maiores aspernatur ab.\", \n\t\"type\": 'MOBILE', \n\t\"releaseDate\": \"2023-08-24\", \n\t\"architectureDiagram\": \"2p0hhhikcj8unie8mvpc5cxecb3zak1dx4grppd928ca9e8y71rar295yksar174rlnlijjvpl5coyvvrogmzgzra08w28zp5fyf0odc77lowtyd3lhnegl4d23zkuqshr9ycu8cxyjx0ccna6j7qyl667n7c3nqe9ejpdmvo8nwmkcn6blsv1ucetggx9humkacy9d6i8bl6tun8wmq8xne7g6a9n0hp6sdezbq3a5zqr8ocptjcmlwcw5xbd\", \n\t\"hasTenants\": true, \n\t\"hasLicensing\": false, \n\t\"costLicensesPerYear\": 150129929, \n\t\"requestsPerDay\": 316018495\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application/update",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application",
+                        "update"
+					]
+				}
+			},
+			"response": []
+        },
+        {
+			"name": "REST - app-health/application/delete/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/application/delete/5b19d6ac-4081-573b-96b3-56964d5326a8",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"application",
+                        "delete",
+						"5b19d6ac-4081-573b-96b3-56964d5326a8"
+					]
+				}
+			},
+			"response": []
+		},
+        {
+			"name": "REST - app-health/applications/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\n\t{\n\t\t\"where\":\n\t\t{\n\t\t\t\"id\":\n\t\t\t{\n\t\t\t\t\"[substring]\": \"\"\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/app-health/applications/delete",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"app-health",
+						"applications",
+                        "delete"
+					]
+				}
+			},
+			"response": []
+		}
+    ],
+    "variable": [
+		{
+			"id": "d9bc3afc-fd40-5505-b57f-8f5d5118e01b",
+			"key": "URL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

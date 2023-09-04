@@ -1,0 +1,9 @@
+export { AppHealthApplicationViewId } from './app-health-application-view-id';
+export { AppHealthApplicationViewApplicationId } from './app-health-application-view-application-id';
+export { AppHealthApplicationViewTotalViews } from './app-health-application-view-total-views';
+export { AppHealthApplicationViewComplexity } from './app-health-application-view-complexity';
+export { AppHealthApplicationViewDescription } from './app-health-application-view-description';
+export { AppHealthApplicationViewScore } from './app-health-application-view-score';
+export { AppHealthApplicationViewCreatedAt } from './app-health-application-view-created-at';
+export { AppHealthApplicationViewUpdatedAt } from './app-health-application-view-updated-at';
+export { AppHealthApplicationViewDeletedAt } from './app-health-application-view-deleted-at';

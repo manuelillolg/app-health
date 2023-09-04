@@ -1,0 +1,26 @@
+import { Injectable } from '@nestjs/common';
+import { QueryStatement } from '@aurorajs.dev/core';
+import { CQMetadata } from '@aurorajs.dev/core';
+import { AppHealthIApplicationInfrastructureServiceRepository } from '../../domain/app-health-application-infrastructure-service.repository';
+import { AppHealthApplicationInfrastructureService } from '../../domain/app-health-application-infrastructure-service.aggregate';
+
+@Injectable()
+export class AppHealthGetApplicationInfrastuctureServicesService
+{
+    constructor(
+        private readonly repository: AppHealthIApplicationInfrastructureServiceRepository,
+    ) {}
+
+    async main(
+        queryStatement?: QueryStatement,
+        constraint?: QueryStatement,
+        cQMetadata?: CQMetadata,
+    ): Promise<AppHealthApplicationInfrastructureService[]>
+    {
+        return await this.repository.get({
+            queryStatement,
+            constraint,
+            cQMetadata,
+        });
+    }
+}

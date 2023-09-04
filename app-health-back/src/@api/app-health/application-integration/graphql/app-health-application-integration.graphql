@@ -1,0 +1,128 @@
+enum AppHealthApplicationIntegrationModality {
+    UNIDIRECTIONAL
+    BIDIRECTIONAL
+}
+
+
+type AppHealthApplicationIntegration
+{
+    id: ID!
+    name: GraphQLString!
+    description: GraphQLString
+    sourceApplicationId: ID!
+    sourceApplication: AppHealthApplication
+    targetApplicationId: ID
+    targetApplication: AppHealthApplication
+    apiInterfaceTypeId: ID!
+    apiInterfaceType: AppHealthApiInterfaceType
+    interfaceNumbers: GraphQLInt
+    modality: AppHealthApplicationIntegrationModality!
+    score: GraphQLInt!
+    documentations: JSON
+    createdAt: GraphQLTimestamp
+    updatedAt: GraphQLTimestamp
+    deletedAt: GraphQLTimestamp
+}
+
+input AppHealthCreateApplicationIntegrationInput
+{
+    id: ID!
+    name: GraphQLString!
+    description: GraphQLString
+    sourceApplicationId: ID!
+    targetApplicationId: ID
+    apiInterfaceTypeId: ID!
+    interfaceNumbers: GraphQLInt
+    modality: AppHealthApplicationIntegrationModality!
+    score: GraphQLInt!
+    documentations: JSON
+}
+
+input AppHealthUpdateApplicationIntegrationByIdInput
+{
+    id: ID!
+    name: GraphQLString
+    description: GraphQLString
+    sourceApplicationId: ID
+    targetApplicationId: ID
+    apiInterfaceTypeId: ID
+    interfaceNumbers: GraphQLInt
+    modality: AppHealthApplicationIntegrationModality
+    score: GraphQLInt
+    documentations: JSON
+}
+
+input AppHealthUpdateApplicationIntegrationsInput
+{
+    id: ID
+    name: GraphQLString
+    description: GraphQLString
+    sourceApplicationId: ID
+    targetApplicationId: ID
+    apiInterfaceTypeId: ID
+    interfaceNumbers: GraphQLInt
+    modality: AppHealthApplicationIntegrationModality
+    score: GraphQLInt
+    documentations: JSON
+}
+
+type Query
+{
+    appHealthFindApplicationIntegration(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): AppHealthApplicationIntegration
+
+    appHealthFindApplicationIntegrationById(
+        id: ID
+        constraint: QueryStatement
+    ): AppHealthApplicationIntegration
+
+    appHealthGetApplicationIntegrations(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationIntegration]!
+
+    appHealthPaginateApplicationIntegrations(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): Pagination!
+
+}
+
+type Mutation
+{
+    appHealthCreateApplicationIntegration(
+        payload: AppHealthCreateApplicationIntegrationInput!
+    ): AppHealthApplicationIntegration
+
+    appHealthCreateApplicationIntegrations(
+        payload: [AppHealthCreateApplicationIntegrationInput]!
+    ): Boolean!
+
+    appHealthUpdateApplicationIntegrationById(
+        payload: AppHealthUpdateApplicationIntegrationByIdInput!
+        constraint: QueryStatement
+    ): AppHealthApplicationIntegration
+
+    appHealthUpdateApplicationIntegrations(
+        payload: AppHealthUpdateApplicationIntegrationsInput!
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationIntegration]!
+
+    appHealthUpsertApplicationIntegration(
+        payload: AppHealthUpdateApplicationIntegrationByIdInput!
+    ): AppHealthApplicationIntegration
+
+    appHealthDeleteApplicationIntegrationById(
+        id: ID!
+        constraint: QueryStatement
+    ): AppHealthApplicationIntegration
+
+    appHealthDeleteApplicationIntegrations(
+        query: QueryStatement
+        constraint: QueryStatement
+    ): [AppHealthApplicationIntegration]!
+
+}

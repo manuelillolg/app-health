@@ -1,0 +1,78 @@
+version: 0.0.1
+boundedContextName: app-health
+moduleName: application-database
+moduleNames: application-databases
+aggregateName: AppHealthApplicationDatabase
+hasOAuth: false
+hasTenant: false
+hasAuditing: false
+aggregateProperties:
+  - name: id
+    type: id
+    primaryKey: true
+    length: 36
+    nullable: false
+  - name: applicationId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApplication
+      modulePath: app-health/application
+      key: id
+      field: application
+      avoidConstraint: true
+  - name: databaseId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthDatabase
+      modulePath: app-health/database
+      key: id
+      field: database
+      avoidConstraint: true
+  - name: version
+    type: varchar
+    maxLength: 20
+    nullable: false
+  - name: size
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: true
+  - name: score
+    type: smallint.unsigned
+    maxLength: 6
+    nullable: false
+  - name: totalCollectionsTables
+    type: int.unsigned
+    maxLength: 10
+    nullable: true
+  - name: totalFields
+    type: int.unsigned
+    maxLength: 10
+    nullable: true
+  - name: applicationInfrastructureServiceId
+    type: id
+    length: 36
+    nullable: false
+    relationship:
+      type: many-to-one
+      aggregate: AppHealthApplicationInfrastructureService
+      modulePath: app-health/application-infrastructure-service
+      key: id
+      field: applicationInfrastructureService
+      avoidConstraint: true
+  - name: createdAt
+    type: timestamp
+    nullable: true
+  - name: updatedAt
+    type: timestamp
+    nullable: true
+  - name: deletedAt
+    type: timestamp
+    nullable: true
+aggregateI18nProperties: []
+additionalApis: []
