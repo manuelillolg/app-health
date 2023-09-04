@@ -13,5 +13,12 @@ export const appHealthNavigation: FuseNavigationItem = {
             icon : 'heroicons_outline:tag',
             link : '/app-health/api-interface-type',
         },
+        {
+            id   : 'technicalSolutions',
+            title: 'TechnicalSolution',
+            type : 'basic',
+            icon : 'heroicons_outline:tag',
+            link : '/app-health/technical-solution',
+        },
     ],
 };

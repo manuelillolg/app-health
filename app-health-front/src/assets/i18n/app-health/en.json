@@ -1,6 +1,12 @@
 {
     "ApiInterfaceType": "ApiInterfaceType",
     "ApiInterfaceTypes": "ApiInterfaceTypes",
+    "ArchitectureDiagram": "ArchitectureDiagram",
+    "CustomerId": "CustomerId",
+    "Description": "Description",
     "Name": "Name",
-    "Score": "Score"
+    "Proposal": "Proposal",
+    "Score": "Score",
+    "TechnicalSolution": "TechnicalSolution",
+    "TechnicalSolutions": "TechnicalSolutions"
 }
