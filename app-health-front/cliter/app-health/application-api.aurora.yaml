@@ -23,6 +23,8 @@ aggregateProperties:
       key: id
       field: application
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: apiInterfaceTypeId
     type: id
     length: 36
@@ -34,6 +36,8 @@ aggregateProperties:
       key: id
       field: apiInterfaceType
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: score
     type: smallint.unsigned
     maxLength: 6
@@ -56,6 +60,8 @@ aggregateProperties:
       key: id
       field: applicationInfrastructureService
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: createdAt
     type: timestamp
     nullable: true

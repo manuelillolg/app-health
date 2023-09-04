@@ -1,5 +1,6 @@
-import { AppHealthCreateInfrastructureService, AppHealthInfrastructureService, AppHealthUpdateInfrastructureServiceById, AppHealthUpdateInfrastructureServices } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './infrastructure-service.graphql';
+import { AppHealthCreateInfrastructureService, AppHealthInfrastructureProvider, AppHealthInfrastructureService, AppHealthUpdateInfrastructureServiceById, AppHealthUpdateInfrastructureServices } from '../app-health.types';
+import { InfrastructureProviderService } from '../infrastructure-provider/infrastructure-provider.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './infrastructure-service.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +17,7 @@ export class InfrastructureServiceService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly infrastructureProviderService: InfrastructureProviderService,
     ) {}
 
     /**
@@ -112,6 +114,56 @@ export class InfrastructureServiceService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryInfrastructureProviders = {},
+            constraintInfrastructureProviders = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryInfrastructureProviders?: QueryStatement;
+            constraintInfrastructureProviders?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthInfrastructureService;
+        appHealthGetInfrastructureProviders: AppHealthInfrastructureProvider[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthInfrastructureService;
+                appHealthGetInfrastructureProviders: AppHealthInfrastructureProvider[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryInfrastructureProviders,
+                    constraintInfrastructureProviders,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.infrastructureServiceSubject$.next(data.object);
+                    this.infrastructureProviderService.infrastructureProvidersSubject$.next(data.appHealthGetInfrastructureProviders);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +242,42 @@ export class InfrastructureServiceService
                 tap(data =>
                 {
                     this.infrastructureServicesSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryInfrastructureProviders = {},
+            constraintInfrastructureProviders = {},
+            headers = {},
+        }: {
+            queryInfrastructureProviders?: QueryStatement;
+            constraintInfrastructureProviders?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetInfrastructureProviders: AppHealthInfrastructureProvider[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetInfrastructureProviders: AppHealthInfrastructureProvider[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryInfrastructureProviders,
+                    constraintInfrastructureProviders,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.infrastructureProviderService.infrastructureProvidersSubject$.next(data.appHealthGetInfrastructureProviders);
                 }),
             );
     }

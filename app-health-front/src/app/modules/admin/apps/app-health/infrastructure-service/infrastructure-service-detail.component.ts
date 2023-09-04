@@ -1,9 +1,12 @@
-import { AppHealthInfrastructureService } from '../app-health.types';
+import { NgForOf } from '@angular/common';
+import { AppHealthInfrastructureProvider, AppHealthInfrastructureService } from '../app-health.types';
+import { InfrastructureProviderService } from '../infrastructure-provider/infrastructure-provider.service';
 import { InfrastructureServiceService } from './infrastructure-service.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
 
 @Component({
     selector       : 'app-health-infrastructure-service-detail',
@@ -13,6 +16,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class InfrastructureServiceDetailComponent extends ViewDetailComponent
@@ -26,6 +31,9 @@ export class InfrastructureServiceDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthInfrastructureService;
 
+    // relationships
+    infrastructureProviders$: Observable<AppHealthInfrastructureProvider[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -34,6 +42,7 @@ export class InfrastructureServiceDetailComponent extends ViewDetailComponent
     ];
 
     constructor(
+        private readonly infrastructureProviderService: InfrastructureProviderService,
         private readonly infrastructureServiceService: InfrastructureServiceService,
         protected readonly injector: Injector,
     )
@@ -46,6 +55,7 @@ export class InfrastructureServiceDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.infrastructureProviders$ = this.infrastructureProviderService.infrastructureProviders$;
     }
 
     onSubmit($event): void

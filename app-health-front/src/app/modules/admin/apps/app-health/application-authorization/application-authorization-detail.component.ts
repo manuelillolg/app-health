@@ -1,9 +1,14 @@
-import { AppHealthApplicationAuthorization } from '../app-health.types';
+import { MatSelectModule } from '@angular/material/select';
+import { AppHealthApplication, AppHealthApplicationAuthorization, AppHealthApplicationInfrastructureService, AppHealthAuthorizationInterface } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { AuthorizationInterfaceService } from '../authorization-interface/authorization-interface.service';
 import { ApplicationAuthorizationService } from './application-authorization.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
+import { NgForOf } from '@angular/common';
 
 @Component({
     selector       : 'app-health-application-authorization-detail',
@@ -13,6 +18,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class ApplicationAuthorizationDetailComponent extends ViewDetailComponent
@@ -26,6 +33,11 @@ export class ApplicationAuthorizationDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplicationAuthorization;
 
+    // relationships
+    applications$: Observable<AppHealthApplication[]>;
+    authorizationInterfaces$: Observable<AppHealthAuthorizationInterface[]>;
+    applicationInfrastuctureServices$: Observable<AppHealthApplicationInfrastructureService[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -35,6 +47,9 @@ export class ApplicationAuthorizationDetailComponent extends ViewDetailComponent
 
     constructor(
         private readonly applicationAuthorizationService: ApplicationAuthorizationService,
+        private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
+        private readonly applicationService: ApplicationService,
+        private readonly authorizationInterfaceService: AuthorizationInterfaceService,
         protected readonly injector: Injector,
     )
     {
@@ -46,6 +61,9 @@ export class ApplicationAuthorizationDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.applications$ = this.applicationService.applications$;
+        this.authorizationInterfaces$ = this.authorizationInterfaceService.authorizationInterfaces$;
+        this.applicationInfrastuctureServices$ = this.applicationInfrastructureServiceService.applicationInfrastuctureServices$;
     }
 
     onSubmit($event): void

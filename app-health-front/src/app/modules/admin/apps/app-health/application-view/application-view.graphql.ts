@@ -11,6 +11,22 @@ export const fields = `
 `;
 
 export const relationsFields = `
+    appHealthGetApplications (
+        query: $queryApplications
+        constraint: $constraintApplications
+    ) {
+        id
+        name
+        description
+        businessImpact
+        type
+        releaseDate
+        architectureDiagram
+        hasTenants
+        hasLicensing
+        costLicensesPerYear
+        requestsPerDay
+    }
 `;
 
 // default methods
@@ -45,6 +61,15 @@ export const getQuery = gql`
     }
 `;
 
+export const getRelations = gql`
+    query AppHealthGetApplicationViewsRelations(
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+    ) {
+        ${relationsFields}
+    }
+`;
+
 export const findByIdQuery = gql`
     query AppHealthFindApplicationViewById (
         $id: ID
@@ -57,6 +82,24 @@ export const findByIdQuery = gql`
             id
             #FIELDS
         }
+    }
+`;
+
+export const findByIdWithRelationsQuery = gql`
+    query AppHealthFindApplicationViewByIdWithRelations (
+        $id: ID
+        $constraint: QueryStatement
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+    ) {
+        object: appHealthFindApplicationViewById (
+            id: $id
+            constraint: $constraint
+        ) {
+            id
+            #FIELDS
+        }
+        ${relationsFields}
     }
 `;
 

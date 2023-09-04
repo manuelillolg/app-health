@@ -11,11 +11,11 @@
         },
         {
             "path": "src/app/modules/admin/apps/app-health/infrastructure-service/infrastructure-service-detail.component.html",
-            "integrity": "sha1:392021c5475d8840015b637343ac8255319c365d"
+            "integrity": "sha1:c96b53d5f33b417621987c1d1e27da016975828d"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/infrastructure-service/infrastructure-service-detail.component.ts",
-            "integrity": "sha1:53079adf2b45bce9907c9311f61f826c9132aa59"
+            "integrity": "sha1:a198c057139f95fd26cf1896e8817b53f383960d"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/infrastructure-service/infrastructure-service-list.component.html",
@@ -31,15 +31,15 @@
         },
         {
             "path": "src/app/modules/admin/apps/app-health/infrastructure-service/infrastructure-service.graphql.ts",
-            "integrity": "sha1:caad9027d1a1be09a511a1204b90f6161f272404"
+            "integrity": "sha1:bb16876f0d6985357b5b0e8609fca3d3d853c979"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/infrastructure-service/infrastructure-service.resolvers.ts",
-            "integrity": "sha1:739a158ac820e2f65f090ac79909d068d9a9b3b4"
+            "integrity": "sha1:12f1e38db1c170af7567de7763fd3f06b3432364"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/infrastructure-service/infrastructure-service.service.ts",
-            "integrity": "sha1:ea81851c58266cb6aa96095220da608aec846de6"
+            "integrity": "sha1:06ecb3cfbdcb7e8ea49a7d88768c68a20ac72ad3"
         }
     ]
 }

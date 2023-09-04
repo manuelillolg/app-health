@@ -23,6 +23,8 @@ aggregateProperties:
       key: id
       field: application
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: authorizationInterfaceId
     type: id
     length: 36
@@ -34,6 +36,8 @@ aggregateProperties:
       key: id
       field: authorizationInterface
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: totalUsers
     type: int.unsigned
     maxLength: 10
@@ -53,6 +57,8 @@ aggregateProperties:
       key: id
       field: applicationInfrastructureService
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: createdAt
     type: timestamp
     nullable: true

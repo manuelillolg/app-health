@@ -1,9 +1,13 @@
-import { AppHealthApplicationInfrastructureService } from '../app-health.types';
+import { MatSelectModule } from '@angular/material/select';
+import { AppHealthApplication, AppHealthApplicationInfrastructureService, AppHealthInfrastructureService } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
+import { InfrastructureServiceService } from '../infrastructure-service/infrastructure-service.service';
 import { ApplicationInfrastructureServiceService } from './application-infrastructure-service.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
+import { NgForOf } from '@angular/common';
 
 @Component({
     selector       : 'app-health-application-infrastructure-service-detail',
@@ -13,6 +17,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class ApplicationInfrastructureServiceDetailComponent extends ViewDetailComponent
@@ -26,6 +32,10 @@ export class ApplicationInfrastructureServiceDetailComponent extends ViewDetailC
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplicationInfrastructureService;
 
+    // relationships
+    applications$: Observable<AppHealthApplication[]>;
+    infrastructureServices$: Observable<AppHealthInfrastructureService[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -35,6 +45,8 @@ export class ApplicationInfrastructureServiceDetailComponent extends ViewDetailC
 
     constructor(
         private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
+        private readonly applicationService: ApplicationService,
+        private readonly infrastructureServiceService: InfrastructureServiceService,
         protected readonly injector: Injector,
     )
     {
@@ -46,6 +58,8 @@ export class ApplicationInfrastructureServiceDetailComponent extends ViewDetailC
     init(): void
     {
         /**/
+        this.applications$ = this.applicationService.applications$;
+        this.infrastructureServices$ = this.infrastructureServiceService.infrastructureServices$;
     }
 
     onSubmit($event): void

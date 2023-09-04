@@ -1,4 +1,7 @@
-import { AppHealthApplicationAuthorization } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationAuthorization, AppHealthApplicationInfrastructureService, AppHealthAuthorizationInterface } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { AuthorizationInterfaceService } from '../authorization-interface/authorization-interface.service';
 import { applicationAuthorizationColumnsConfig } from './application-authorization.columns-config';
 import { ApplicationAuthorizationService } from './application-authorization.service';
 import { inject } from '@angular/core';
@@ -35,20 +38,30 @@ export const applicationAuthorizationPaginationResolver: ResolveFn<GridData<AppH
     });
 };
 
-export const applicationAuthorizationNewResolver: ResolveFn<Action> = (
+export const applicationAuthorizationNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetAuthorizationInterfaces: AppHealthAuthorizationInterface[];
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationAuthorizationService = inject(ApplicationAuthorizationService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationAuthorization.detail.new',
         isViewAction: true,
     });
+
+    return applicationAuthorizationService.getRelations();
 };
 
 export const applicationAuthorizationEditResolver: ResolveFn<{
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetAuthorizationInterfaces: AppHealthAuthorizationInterface[];
     object: AppHealthApplicationAuthorization;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +77,7 @@ export const applicationAuthorizationEditResolver: ResolveFn<{
     });
 
     return applicationAuthorizationService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

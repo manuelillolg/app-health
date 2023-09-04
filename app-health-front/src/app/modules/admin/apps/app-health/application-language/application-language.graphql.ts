@@ -11,6 +11,30 @@ export const fields = `
 `;
 
 export const relationsFields = `
+    appHealthGetApplications (
+        query: $queryApplications
+        constraint: $constraintApplications
+    ) {
+        id
+        name
+        description
+        businessImpact
+        type
+        releaseDate
+        architectureDiagram
+        hasTenants
+        hasLicensing
+        costLicensesPerYear
+        requestsPerDay
+    }
+    appHealthGetLanguages (
+        query: $queryLanguages
+        constraint: $constraintLanguages
+    ) {
+        id
+        name
+        versions
+    }
 `;
 
 // default methods
@@ -45,6 +69,17 @@ export const getQuery = gql`
     }
 `;
 
+export const getRelations = gql`
+    query AppHealthGetApplicationLanguagesRelations(
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+        $queryLanguages: QueryStatement
+        $constraintLanguages: QueryStatement
+    ) {
+        ${relationsFields}
+    }
+`;
+
 export const findByIdQuery = gql`
     query AppHealthFindApplicationLanguageById (
         $id: ID
@@ -57,6 +92,26 @@ export const findByIdQuery = gql`
             id
             #FIELDS
         }
+    }
+`;
+
+export const findByIdWithRelationsQuery = gql`
+    query AppHealthFindApplicationLanguageByIdWithRelations (
+        $id: ID
+        $constraint: QueryStatement
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+        $queryLanguages: QueryStatement
+        $constraintLanguages: QueryStatement
+    ) {
+        object: appHealthFindApplicationLanguageById (
+            id: $id
+            constraint: $constraint
+        ) {
+            id
+            #FIELDS
+        }
+        ${relationsFields}
     }
 `;
 

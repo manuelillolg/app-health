@@ -1,4 +1,7 @@
-import { AppHealthApplicationApi } from '../app-health.types';
+import { ApiInterfaceTypeService } from '../api-interface-type/api-interface-type.service';
+import { AppHealthApiInterfaceType, AppHealthApplication, AppHealthApplicationApi, AppHealthApplicationInfrastructureService } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
 import { applicationApiColumnsConfig } from './application-api.columns-config';
 import { ApplicationApiService } from './application-api.service';
 import { inject } from '@angular/core';
@@ -35,20 +38,30 @@ export const applicationApiPaginationResolver: ResolveFn<GridData<AppHealthAppli
     });
 };
 
-export const applicationApiNewResolver: ResolveFn<Action> = (
+export const applicationApiNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetApiInterfaceTypes: AppHealthApiInterfaceType[];
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationApiService = inject(ApplicationApiService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationApi.detail.new',
         isViewAction: true,
     });
+
+    return applicationApiService.getRelations();
 };
 
 export const applicationApiEditResolver: ResolveFn<{
+    appHealthGetApiInterfaceTypes: AppHealthApiInterfaceType[];
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    appHealthGetApplications: AppHealthApplication[];
     object: AppHealthApplicationApi;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +77,7 @@ export const applicationApiEditResolver: ResolveFn<{
     });
 
     return applicationApiService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

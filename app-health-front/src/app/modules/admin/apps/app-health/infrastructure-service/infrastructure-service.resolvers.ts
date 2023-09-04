@@ -1,4 +1,5 @@
-import { AppHealthInfrastructureService } from '../app-health.types';
+import { AppHealthInfrastructureProvider, AppHealthInfrastructureService } from '../app-health.types';
+import { InfrastructureProviderService } from '../infrastructure-provider/infrastructure-provider.service';
 import { infrastructureServiceColumnsConfig } from './infrastructure-service.columns-config';
 import { InfrastructureServiceService } from './infrastructure-service.service';
 import { inject } from '@angular/core';
@@ -35,20 +36,26 @@ export const infrastructureServicePaginationResolver: ResolveFn<GridData<AppHeal
     });
 };
 
-export const infrastructureServiceNewResolver: ResolveFn<Action> = (
+export const infrastructureServiceNewResolver: ResolveFn<{
+    appHealthGetInfrastructureProviders: AppHealthInfrastructureProvider[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const infrastructureServiceService = inject(InfrastructureServiceService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::infrastructureService.detail.new',
         isViewAction: true,
     });
+
+    return infrastructureServiceService.getRelations();
 };
 
 export const infrastructureServiceEditResolver: ResolveFn<{
+    appHealthGetInfrastructureProviders: AppHealthInfrastructureProvider[];
     object: AppHealthInfrastructureService;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +71,7 @@ export const infrastructureServiceEditResolver: ResolveFn<{
     });
 
     return infrastructureServiceService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

@@ -14,6 +14,39 @@ export const fields = `
 `;
 
 export const relationsFields = `
+    appHealthGetApplications (
+        query: $queryApplications
+        constraint: $constraintApplications
+    ) {
+        id
+        name
+        description
+        businessImpact
+        type
+        releaseDate
+        architectureDiagram
+        hasTenants
+        hasLicensing
+        costLicensesPerYear
+        requestsPerDay
+    }
+    appHealthGetDatabases (
+        query: $queryDatabases
+        constraint: $constraintDatabases
+    ) {
+        id
+        name
+        type
+        versions
+    }
+    appHealthGetApplicationInfrastuctureServices (
+        query: $queryApplicationInfrastuctureServices
+        constraint: $constraintApplicationInfrastuctureServices
+    ) {
+        id
+        averageCostPerYear
+        score
+    }
 `;
 
 // default methods
@@ -48,6 +81,19 @@ export const getQuery = gql`
     }
 `;
 
+export const getRelations = gql`
+    query AppHealthGetApplicationDatabasesRelations(
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+        $queryDatabases: QueryStatement
+        $constraintDatabases: QueryStatement
+        $queryApplicationInfrastuctureServices: QueryStatement
+        $constraintApplicationInfrastuctureServices: QueryStatement
+    ) {
+        ${relationsFields}
+    }
+`;
+
 export const findByIdQuery = gql`
     query AppHealthFindApplicationDatabaseById (
         $id: ID
@@ -60,6 +106,28 @@ export const findByIdQuery = gql`
             id
             #FIELDS
         }
+    }
+`;
+
+export const findByIdWithRelationsQuery = gql`
+    query AppHealthFindApplicationDatabaseByIdWithRelations (
+        $id: ID
+        $constraint: QueryStatement
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+        $queryDatabases: QueryStatement
+        $constraintDatabases: QueryStatement
+        $queryApplicationInfrastuctureServices: QueryStatement
+        $constraintApplicationInfrastuctureServices: QueryStatement
+    ) {
+        object: appHealthFindApplicationDatabaseById (
+            id: $id
+            constraint: $constraint
+        ) {
+            id
+            #FIELDS
+        }
+        ${relationsFields}
     }
 `;
 

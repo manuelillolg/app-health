@@ -11,11 +11,11 @@
         },
         {
             "path": "src/app/modules/admin/apps/app-health/application-authorization/application-authorization-detail.component.html",
-            "integrity": "sha1:680e92a33aa6ccb91cf0592a1d41d98b85db2729"
+            "integrity": "sha1:5fc2d1a247b7fd818c8cd9441e739892a24835dc"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/application-authorization/application-authorization-detail.component.ts",
-            "integrity": "sha1:375e096a7f0ea213f0aa427d02a74e973ca120e7"
+            "integrity": "sha1:27d3fdd3ea2086639ea86bcaa4279a7600143c3d"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/application-authorization/application-authorization-list.component.html",
@@ -31,15 +31,15 @@
         },
         {
             "path": "src/app/modules/admin/apps/app-health/application-authorization/application-authorization.graphql.ts",
-            "integrity": "sha1:f2f923150760b50536d80e121659b68111cbc370"
+            "integrity": "sha1:3ced492f8131435f0c93c44f7a265ecbe4d59859"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/application-authorization/application-authorization.resolvers.ts",
-            "integrity": "sha1:6e42fd3d16f507b63d5945599b546277ba6e8d7b"
+            "integrity": "sha1:1efc9157dd5ca8406fa6a9c3298f44588c3566f7"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/application-authorization/application-authorization.service.ts",
-            "integrity": "sha1:98860dd913833bb9ac4b2357d37b7c7f5d0d4dae"
+            "integrity": "sha1:fe7707c9ef5afca7f460ad86de0ad3a3b796d7db"
         }
     ]
 }

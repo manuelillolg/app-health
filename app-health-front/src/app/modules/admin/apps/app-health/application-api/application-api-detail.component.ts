@@ -1,9 +1,14 @@
-import { AppHealthApplicationApi } from '../app-health.types';
+import { MatSelectModule } from '@angular/material/select';
+import { ApiInterfaceTypeService } from '../api-interface-type/api-interface-type.service';
+import { AppHealthApiInterfaceType, AppHealthApplication, AppHealthApplicationApi, AppHealthApplicationInfrastructureService } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
 import { ApplicationApiService } from './application-api.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
+import { NgForOf } from '@angular/common';
 
 @Component({
     selector       : 'app-health-application-api-detail',
@@ -13,6 +18,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class ApplicationApiDetailComponent extends ViewDetailComponent
@@ -26,6 +33,11 @@ export class ApplicationApiDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplicationApi;
 
+    // relationships
+    applications$: Observable<AppHealthApplication[]>;
+    apiInterfaceTypes$: Observable<AppHealthApiInterfaceType[]>;
+    applicationInfrastuctureServices$: Observable<AppHealthApplicationInfrastructureService[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -34,7 +46,10 @@ export class ApplicationApiDetailComponent extends ViewDetailComponent
     ];
 
     constructor(
+        private readonly apiInterfaceTypeService: ApiInterfaceTypeService,
         private readonly applicationApiService: ApplicationApiService,
+        private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
+        private readonly applicationService: ApplicationService,
         protected readonly injector: Injector,
     )
     {
@@ -46,6 +61,9 @@ export class ApplicationApiDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.applications$ = this.applicationService.applications$;
+        this.apiInterfaceTypes$ = this.apiInterfaceTypeService.apiInterfaceTypes$;
+        this.applicationInfrastuctureServices$ = this.applicationInfrastructureServiceService.applicationInfrastuctureServices$;
     }
 
     onSubmit($event): void

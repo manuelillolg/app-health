@@ -23,6 +23,8 @@ aggregateProperties:
       key: id
       field: application
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: databaseId
     type: id
     length: 36
@@ -34,6 +36,8 @@ aggregateProperties:
       key: id
       field: database
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: version
     type: varchar
     maxLength: 20
@@ -65,6 +69,8 @@ aggregateProperties:
       key: id
       field: applicationInfrastructureService
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: createdAt
     type: timestamp
     nullable: true

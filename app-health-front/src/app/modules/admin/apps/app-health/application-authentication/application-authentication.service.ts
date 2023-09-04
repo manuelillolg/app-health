@@ -1,5 +1,8 @@
-import { AppHealthApplicationAuthentication, AppHealthCreateApplicationAuthentication, AppHealthUpdateApplicationAuthenticationById, AppHealthUpdateApplicationAuthentications } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './application-authentication.graphql';
+import { AppHealthApplication, AppHealthApplicationAuthentication, AppHealthApplicationInfrastructureService, AppHealthAuthenticationInterface, AppHealthCreateApplicationAuthentication, AppHealthUpdateApplicationAuthenticationById, AppHealthUpdateApplicationAuthentications } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { AuthenticationInterfaceService } from '../authentication-interface/authentication-interface.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './application-authentication.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +19,9 @@ export class ApplicationAuthenticationService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly applicationService: ApplicationService,
+        private readonly authenticationInterfaceService: AuthenticationInterfaceService,
+        private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
     ) {}
 
     /**
@@ -112,6 +118,74 @@ export class ApplicationAuthenticationService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryApplications = {},
+            constraintApplications = {},
+            queryAuthenticationInterfaces = {},
+            constraintAuthenticationInterfaces = {},
+            queryApplicationInfrastuctureServices = {},
+            constraintApplicationInfrastuctureServices = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryAuthenticationInterfaces?: QueryStatement;
+            constraintAuthenticationInterfaces?: QueryStatement;
+            queryApplicationInfrastuctureServices?: QueryStatement;
+            constraintApplicationInfrastuctureServices?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthApplicationAuthentication;
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetAuthenticationInterfaces: AppHealthAuthenticationInterface[];
+        appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthApplicationAuthentication;
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetAuthenticationInterfaces: AppHealthAuthenticationInterface[];
+                appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryApplications,
+                    constraintApplications,
+                    queryAuthenticationInterfaces,
+                    constraintAuthenticationInterfaces,
+                    queryApplicationInfrastuctureServices,
+                    constraintApplicationInfrastuctureServices,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationAuthenticationSubject$.next(data.object);
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.authenticationInterfaceService.authenticationInterfacesSubject$.next(data.appHealthGetAuthenticationInterfaces);
+                    this.applicationInfrastructureServiceService.applicationInfrastuctureServicesSubject$.next(data.appHealthGetApplicationInfrastuctureServices);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +264,60 @@ export class ApplicationAuthenticationService
                 tap(data =>
                 {
                     this.applicationAuthenticationsSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryApplications = {},
+            constraintApplications = {},
+            queryAuthenticationInterfaces = {},
+            constraintAuthenticationInterfaces = {},
+            queryApplicationInfrastuctureServices = {},
+            constraintApplicationInfrastuctureServices = {},
+            headers = {},
+        }: {
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryAuthenticationInterfaces?: QueryStatement;
+            constraintAuthenticationInterfaces?: QueryStatement;
+            queryApplicationInfrastuctureServices?: QueryStatement;
+            constraintApplicationInfrastuctureServices?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetAuthenticationInterfaces: AppHealthAuthenticationInterface[];
+        appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetAuthenticationInterfaces: AppHealthAuthenticationInterface[];
+                appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryApplications,
+                    constraintApplications,
+                    queryAuthenticationInterfaces,
+                    constraintAuthenticationInterfaces,
+                    queryApplicationInfrastuctureServices,
+                    constraintApplicationInfrastuctureServices,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.authenticationInterfaceService.authenticationInterfacesSubject$.next(data.appHealthGetAuthenticationInterfaces);
+                    this.applicationInfrastructureServiceService.applicationInfrastuctureServicesSubject$.next(data.appHealthGetApplicationInfrastuctureServices);
                 }),
             );
     }

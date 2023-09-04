@@ -1,4 +1,5 @@
-import { AppHealthApplicationView } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationView } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
 import { applicationViewColumnsConfig } from './application-view.columns-config';
 import { ApplicationViewService } from './application-view.service';
 import { inject } from '@angular/core';
@@ -35,20 +36,26 @@ export const applicationViewPaginationResolver: ResolveFn<GridData<AppHealthAppl
     });
 };
 
-export const applicationViewNewResolver: ResolveFn<Action> = (
+export const applicationViewNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationViewService = inject(ApplicationViewService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationView.detail.new',
         isViewAction: true,
     });
+
+    return applicationViewService.getRelations();
 };
 
 export const applicationViewEditResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
     object: AppHealthApplicationView;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +71,7 @@ export const applicationViewEditResolver: ResolveFn<{
     });
 
     return applicationViewService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

@@ -1,5 +1,6 @@
-import { AppHealthApplication, AppHealthCreateApplication, AppHealthUpdateApplicationById, AppHealthUpdateApplications } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './application.graphql';
+import { AppHealthApplication, AppHealthCreateApplication, AppHealthTechnicalSolution, AppHealthUpdateApplicationById, AppHealthUpdateApplications } from '../app-health.types';
+import { TechnicalSolutionService } from '../technical-solution/technical-solution.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './application.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +17,7 @@ export class ApplicationService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly technicalSolutionService: TechnicalSolutionService,
     ) {}
 
     /**
@@ -112,6 +114,56 @@ export class ApplicationService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryTechnicalSolutions = {},
+            constraintTechnicalSolutions = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryTechnicalSolutions?: QueryStatement;
+            constraintTechnicalSolutions?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthApplication;
+        appHealthGetTechnicalSolutions: AppHealthTechnicalSolution[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthApplication;
+                appHealthGetTechnicalSolutions: AppHealthTechnicalSolution[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryTechnicalSolutions,
+                    constraintTechnicalSolutions,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationSubject$.next(data.object);
+                    this.technicalSolutionService.technicalSolutionsSubject$.next(data.appHealthGetTechnicalSolutions);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +242,42 @@ export class ApplicationService
                 tap(data =>
                 {
                     this.applicationsSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryTechnicalSolutions = {},
+            constraintTechnicalSolutions = {},
+            headers = {},
+        }: {
+            queryTechnicalSolutions?: QueryStatement;
+            constraintTechnicalSolutions?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetTechnicalSolutions: AppHealthTechnicalSolution[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetTechnicalSolutions: AppHealthTechnicalSolution[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryTechnicalSolutions,
+                    constraintTechnicalSolutions,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.technicalSolutionService.technicalSolutionsSubject$.next(data.appHealthGetTechnicalSolutions);
                 }),
             );
     }

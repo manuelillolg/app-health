@@ -17,6 +17,16 @@ export const fields = `
 `;
 
 export const relationsFields = `
+    appHealthGetTechnicalSolutions (
+        query: $queryTechnicalSolutions
+        constraint: $constraintTechnicalSolutions
+    ) {
+        id
+        name
+        description
+        architectureDiagram
+        proposal
+    }
 `;
 
 // default methods
@@ -51,6 +61,15 @@ export const getQuery = gql`
     }
 `;
 
+export const getRelations = gql`
+    query AppHealthGetApplicationsRelations(
+        $queryTechnicalSolutions: QueryStatement
+        $constraintTechnicalSolutions: QueryStatement
+    ) {
+        ${relationsFields}
+    }
+`;
+
 export const findByIdQuery = gql`
     query AppHealthFindApplicationById (
         $id: ID
@@ -63,6 +82,24 @@ export const findByIdQuery = gql`
             id
             #FIELDS
         }
+    }
+`;
+
+export const findByIdWithRelationsQuery = gql`
+    query AppHealthFindApplicationByIdWithRelations (
+        $id: ID
+        $constraint: QueryStatement
+        $queryTechnicalSolutions: QueryStatement
+        $constraintTechnicalSolutions: QueryStatement
+    ) {
+        object: appHealthFindApplicationById (
+            id: $id
+            constraint: $constraint
+        ) {
+            id
+            #FIELDS
+        }
+        ${relationsFields}
     }
 `;
 

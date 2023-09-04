@@ -1,9 +1,13 @@
-import { AppHealthApplicationLanguage } from '../app-health.types';
+import { MatSelectModule } from '@angular/material/select';
+import { AppHealthApplication, AppHealthApplicationLanguage, AppHealthLanguage } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
+import { LanguageService } from '../language/language.service';
 import { ApplicationLanguageService } from './application-language.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
+import { NgForOf } from '@angular/common';
 
 @Component({
     selector       : 'app-health-application-language-detail',
@@ -13,6 +17,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class ApplicationLanguageDetailComponent extends ViewDetailComponent
@@ -26,6 +32,10 @@ export class ApplicationLanguageDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplicationLanguage;
 
+    // relationships
+    applications$: Observable<AppHealthApplication[]>;
+    languages$: Observable<AppHealthLanguage[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -35,7 +45,9 @@ export class ApplicationLanguageDetailComponent extends ViewDetailComponent
 
     constructor(
         private readonly applicationLanguageService: ApplicationLanguageService,
+        private readonly applicationService: ApplicationService,
         protected readonly injector: Injector,
+        private readonly languageService: LanguageService,
     )
     {
         super(injector);
@@ -46,6 +58,8 @@ export class ApplicationLanguageDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.applications$ = this.applicationService.applications$;
+        this.languages$ = this.languageService.languages$;
     }
 
     onSubmit($event): void

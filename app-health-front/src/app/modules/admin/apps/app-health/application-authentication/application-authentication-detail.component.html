@@ -79,6 +79,40 @@
 
                     <mat-form-field
                         appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.ApplicationId') }}</mat-label>
+                        <mat-select
+                            formControlName="applicationId"
+                        >
+                            <mat-option
+                                *ngFor="let application of applications$ | async"
+                                [value]="application.id"
+                            >
+                                {{ application.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.applicationId | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.AuthenticationInterfaceId') }}</mat-label>
+                        <mat-select
+                            formControlName="authenticationInterfaceId"
+                        >
+                            <mat-option
+                                *ngFor="let authenticationInterface of authenticationInterfaces$ | async"
+                                [value]="authenticationInterface.id"
+                            >
+                                {{ authenticationInterface.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.authenticationInterfaceId | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
                         class="col-2"
                     >
                         <mat-label>{{ t('appHealth.TotalUsers') }}</mat-label>
@@ -102,6 +136,23 @@
                             maxlength="10"
                         >
                         <mat-error>{{ formErrors?.score | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.ApplicationInfrastructureServiceId') }}</mat-label>
+                        <mat-select
+                            formControlName="applicationInfrastructureServiceId"
+                        >
+                            <mat-option
+                                *ngFor="let applicationInfrastructureService of applicationInfrastuctureServices$ | async"
+                                [value]="applicationInfrastructureService.id"
+                            >
+                                {{ applicationInfrastructureService.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.applicationInfrastructureServiceId | async }}</mat-error>
                     </mat-form-field>
 
                 </div>

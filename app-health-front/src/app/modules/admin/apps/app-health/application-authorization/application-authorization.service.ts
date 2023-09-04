@@ -1,5 +1,8 @@
-import { AppHealthApplicationAuthorization, AppHealthCreateApplicationAuthorization, AppHealthUpdateApplicationAuthorizationById, AppHealthUpdateApplicationAuthorizations } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './application-authorization.graphql';
+import { AppHealthApplication, AppHealthApplicationAuthorization, AppHealthApplicationInfrastructureService, AppHealthAuthorizationInterface, AppHealthCreateApplicationAuthorization, AppHealthUpdateApplicationAuthorizationById, AppHealthUpdateApplicationAuthorizations } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { AuthorizationInterfaceService } from '../authorization-interface/authorization-interface.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './application-authorization.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +19,9 @@ export class ApplicationAuthorizationService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly applicationService: ApplicationService,
+        private readonly authorizationInterfaceService: AuthorizationInterfaceService,
+        private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
     ) {}
 
     /**
@@ -112,6 +118,74 @@ export class ApplicationAuthorizationService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryApplications = {},
+            constraintApplications = {},
+            queryAuthorizationInterfaces = {},
+            constraintAuthorizationInterfaces = {},
+            queryApplicationInfrastuctureServices = {},
+            constraintApplicationInfrastuctureServices = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryAuthorizationInterfaces?: QueryStatement;
+            constraintAuthorizationInterfaces?: QueryStatement;
+            queryApplicationInfrastuctureServices?: QueryStatement;
+            constraintApplicationInfrastuctureServices?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthApplicationAuthorization;
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetAuthorizationInterfaces: AppHealthAuthorizationInterface[];
+        appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthApplicationAuthorization;
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetAuthorizationInterfaces: AppHealthAuthorizationInterface[];
+                appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryApplications,
+                    constraintApplications,
+                    queryAuthorizationInterfaces,
+                    constraintAuthorizationInterfaces,
+                    queryApplicationInfrastuctureServices,
+                    constraintApplicationInfrastuctureServices,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationAuthorizationSubject$.next(data.object);
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.authorizationInterfaceService.authorizationInterfacesSubject$.next(data.appHealthGetAuthorizationInterfaces);
+                    this.applicationInfrastructureServiceService.applicationInfrastuctureServicesSubject$.next(data.appHealthGetApplicationInfrastuctureServices);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +264,60 @@ export class ApplicationAuthorizationService
                 tap(data =>
                 {
                     this.applicationAuthorizationsSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryApplications = {},
+            constraintApplications = {},
+            queryAuthorizationInterfaces = {},
+            constraintAuthorizationInterfaces = {},
+            queryApplicationInfrastuctureServices = {},
+            constraintApplicationInfrastuctureServices = {},
+            headers = {},
+        }: {
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryAuthorizationInterfaces?: QueryStatement;
+            constraintAuthorizationInterfaces?: QueryStatement;
+            queryApplicationInfrastuctureServices?: QueryStatement;
+            constraintApplicationInfrastuctureServices?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetAuthorizationInterfaces: AppHealthAuthorizationInterface[];
+        appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetAuthorizationInterfaces: AppHealthAuthorizationInterface[];
+                appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryApplications,
+                    constraintApplications,
+                    queryAuthorizationInterfaces,
+                    constraintAuthorizationInterfaces,
+                    queryApplicationInfrastuctureServices,
+                    constraintApplicationInfrastuctureServices,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.authorizationInterfaceService.authorizationInterfacesSubject$.next(data.appHealthGetAuthorizationInterfaces);
+                    this.applicationInfrastructureServiceService.applicationInfrastuctureServicesSubject$.next(data.appHealthGetApplicationInfrastuctureServices);
                 }),
             );
     }

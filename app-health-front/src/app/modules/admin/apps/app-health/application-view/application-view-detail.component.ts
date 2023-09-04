@@ -1,9 +1,12 @@
-import { AppHealthApplicationView } from '../app-health.types';
+import { NgForOf } from '@angular/common';
+import { AppHealthApplication, AppHealthApplicationView } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
 import { ApplicationViewService } from './application-view.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
 
 @Component({
     selector       : 'app-health-application-view-detail',
@@ -13,6 +16,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class ApplicationViewDetailComponent extends ViewDetailComponent
@@ -26,6 +31,9 @@ export class ApplicationViewDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplicationView;
 
+    // relationships
+    applications$: Observable<AppHealthApplication[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -34,6 +42,7 @@ export class ApplicationViewDetailComponent extends ViewDetailComponent
     ];
 
     constructor(
+        private readonly applicationService: ApplicationService,
         private readonly applicationViewService: ApplicationViewService,
         protected readonly injector: Injector,
     )
@@ -46,6 +55,7 @@ export class ApplicationViewDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.applications$ = this.applicationService.applications$;
     }
 
     onSubmit($event): void

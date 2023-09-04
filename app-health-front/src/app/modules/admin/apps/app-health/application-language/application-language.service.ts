@@ -1,5 +1,7 @@
-import { AppHealthApplicationLanguage, AppHealthCreateApplicationLanguage, AppHealthUpdateApplicationLanguageById, AppHealthUpdateApplicationLanguages } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './application-language.graphql';
+import { AppHealthApplication, AppHealthApplicationLanguage, AppHealthCreateApplicationLanguage, AppHealthLanguage, AppHealthUpdateApplicationLanguageById, AppHealthUpdateApplicationLanguages } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
+import { LanguageService } from '../language/language.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './application-language.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +18,8 @@ export class ApplicationLanguageService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly applicationService: ApplicationService,
+        private readonly languageService: LanguageService,
     ) {}
 
     /**
@@ -112,6 +116,65 @@ export class ApplicationLanguageService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryApplications = {},
+            constraintApplications = {},
+            queryLanguages = {},
+            constraintLanguages = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryLanguages?: QueryStatement;
+            constraintLanguages?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthApplicationLanguage;
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetLanguages: AppHealthLanguage[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthApplicationLanguage;
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetLanguages: AppHealthLanguage[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryApplications,
+                    constraintApplications,
+                    queryLanguages,
+                    constraintLanguages,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationLanguageSubject$.next(data.object);
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.languageService.languagesSubject$.next(data.appHealthGetLanguages);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +253,51 @@ export class ApplicationLanguageService
                 tap(data =>
                 {
                     this.applicationLanguagesSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryApplications = {},
+            constraintApplications = {},
+            queryLanguages = {},
+            constraintLanguages = {},
+            headers = {},
+        }: {
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryLanguages?: QueryStatement;
+            constraintLanguages?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetLanguages: AppHealthLanguage[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetLanguages: AppHealthLanguage[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryApplications,
+                    constraintApplications,
+                    queryLanguages,
+                    constraintLanguages,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.languageService.languagesSubject$.next(data.appHealthGetLanguages);
                 }),
             );
     }

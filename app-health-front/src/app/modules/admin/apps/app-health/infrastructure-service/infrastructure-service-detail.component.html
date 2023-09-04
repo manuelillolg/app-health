@@ -79,6 +79,23 @@
 
                     <mat-form-field
                         appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.ProviderId') }}</mat-label>
+                        <mat-select
+                            formControlName="providerId"
+                        >
+                            <mat-option
+                                *ngFor="let infrastructureProvider of infrastructureProviders$ | async"
+                                [value]="infrastructureProvider.id"
+                            >
+                                {{ infrastructureProvider.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.providerId | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
                         class="col-12"
                     >
                         <mat-label>{{ t('appHealth.Name') }}</mat-label>

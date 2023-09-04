@@ -1,9 +1,14 @@
-import { AppHealthApplicationDatabase } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationDatabase, AppHealthApplicationInfrastructureService, AppHealthDatabase } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { DatabaseService } from '../database/database.service';
 import { ApplicationDatabaseService } from './application-database.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
+import { NgForOf } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
     selector       : 'app-health-application-database-detail',
@@ -13,6 +18,8 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        NgForOf,
     ],
 })
 export class ApplicationDatabaseDetailComponent extends ViewDetailComponent
@@ -26,6 +33,11 @@ export class ApplicationDatabaseDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplicationDatabase;
 
+    // relationships
+    applications$: Observable<AppHealthApplication[]>;
+    databases$: Observable<AppHealthDatabase[]>;
+applicationInfrastuctureServices$: Observable<AppHealthApplicationInfrastructureService[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -35,6 +47,9 @@ export class ApplicationDatabaseDetailComponent extends ViewDetailComponent
 
     constructor(
         private readonly applicationDatabaseService: ApplicationDatabaseService,
+private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
+        private readonly applicationService: ApplicationService,
+        private readonly databaseService: DatabaseService,
         protected readonly injector: Injector,
     )
     {
@@ -46,6 +61,9 @@ export class ApplicationDatabaseDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.applications$ = this.applicationService.applications$;
+        this.databases$ = this.databaseService.databases$;
+this.applicationInfrastuctureServices$ = this.applicationInfrastructureServiceService.applicationInfrastuctureServices$;
     }
 
     onSubmit($event): void

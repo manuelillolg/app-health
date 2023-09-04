@@ -9,6 +9,14 @@ export const fields = `
 `;
 
 export const relationsFields = `
+    appHealthGetInfrastructureProviders (
+        query: $queryInfrastructureProviders
+        constraint: $constraintInfrastructureProviders
+    ) {
+        id
+        name
+        score
+    }
 `;
 
 // default methods
@@ -43,6 +51,15 @@ export const getQuery = gql`
     }
 `;
 
+export const getRelations = gql`
+    query AppHealthGetInfrastructureServicesRelations(
+        $queryInfrastructureProviders: QueryStatement
+        $constraintInfrastructureProviders: QueryStatement
+    ) {
+        ${relationsFields}
+    }
+`;
+
 export const findByIdQuery = gql`
     query AppHealthFindInfrastructureServiceById (
         $id: ID
@@ -55,6 +72,24 @@ export const findByIdQuery = gql`
             id
             #FIELDS
         }
+    }
+`;
+
+export const findByIdWithRelationsQuery = gql`
+    query AppHealthFindInfrastructureServiceByIdWithRelations (
+        $id: ID
+        $constraint: QueryStatement
+        $queryInfrastructureProviders: QueryStatement
+        $constraintInfrastructureProviders: QueryStatement
+    ) {
+        object: appHealthFindInfrastructureServiceById (
+            id: $id
+            constraint: $constraint
+        ) {
+            id
+            #FIELDS
+        }
+        ${relationsFields}
     }
 `;
 

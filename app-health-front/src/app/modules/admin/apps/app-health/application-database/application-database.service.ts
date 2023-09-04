@@ -1,5 +1,8 @@
-import { AppHealthApplicationDatabase, AppHealthCreateApplicationDatabase, AppHealthUpdateApplicationDatabaseById, AppHealthUpdateApplicationDatabases } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './application-database.graphql';
+import { AppHealthApplication, AppHealthApplicationDatabase, AppHealthApplicationInfrastructureService, AppHealthCreateApplicationDatabase, AppHealthDatabase, AppHealthUpdateApplicationDatabaseById, AppHealthUpdateApplicationDatabases } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { DatabaseService } from '../database/database.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './application-database.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +19,9 @@ export class ApplicationDatabaseService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly applicationService: ApplicationService,
+        private readonly databaseService: DatabaseService,
+        private readonly applicationInfrastructureServiceService: ApplicationInfrastructureServiceService,
     ) {}
 
     /**
@@ -112,6 +118,74 @@ export class ApplicationDatabaseService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryApplications = {},
+            constraintApplications = {},
+            queryDatabases = {},
+            constraintDatabases = {},
+            queryApplicationInfrastuctureServices = {},
+            constraintApplicationInfrastuctureServices = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryDatabases?: QueryStatement;
+            constraintDatabases?: QueryStatement;
+            queryApplicationInfrastuctureServices?: QueryStatement;
+            constraintApplicationInfrastuctureServices?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthApplicationDatabase;
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetDatabases: AppHealthDatabase[];
+        appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthApplicationDatabase;
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetDatabases: AppHealthDatabase[];
+                appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryApplications,
+                    constraintApplications,
+                    queryDatabases,
+                    constraintDatabases,
+                    queryApplicationInfrastuctureServices,
+                    constraintApplicationInfrastuctureServices,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationDatabaseSubject$.next(data.object);
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.databaseService.databasesSubject$.next(data.appHealthGetDatabases);
+                    this.applicationInfrastructureServiceService.applicationInfrastuctureServicesSubject$.next(data.appHealthGetApplicationInfrastuctureServices);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +264,60 @@ export class ApplicationDatabaseService
                 tap(data =>
                 {
                     this.applicationDatabasesSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryApplications = {},
+            constraintApplications = {},
+            queryDatabases = {},
+            constraintDatabases = {},
+            queryApplicationInfrastuctureServices = {},
+            constraintApplicationInfrastuctureServices = {},
+            headers = {},
+        }: {
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryDatabases?: QueryStatement;
+            constraintDatabases?: QueryStatement;
+            queryApplicationInfrastuctureServices?: QueryStatement;
+            constraintApplicationInfrastuctureServices?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetDatabases: AppHealthDatabase[];
+        appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetDatabases: AppHealthDatabase[];
+                appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryApplications,
+                    constraintApplications,
+                    queryDatabases,
+                    constraintDatabases,
+                    queryApplicationInfrastuctureServices,
+                    constraintApplicationInfrastuctureServices,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.databaseService.databasesSubject$.next(data.appHealthGetDatabases);
+                    this.applicationInfrastructureServiceService.applicationInfrastuctureServicesSubject$.next(data.appHealthGetApplicationInfrastuctureServices);
                 }),
             );
     }

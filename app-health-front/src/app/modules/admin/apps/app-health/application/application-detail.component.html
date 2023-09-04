@@ -79,6 +79,23 @@
 
                     <mat-form-field
                         appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.TechnicalSolutionId') }}</mat-label>
+                        <mat-select
+                            formControlName="technicalSolutionId"
+                        >
+                            <mat-option
+                                *ngFor="let technicalSolution of technicalSolutions$ | async"
+                                [value]="technicalSolution.id"
+                            >
+                                {{ technicalSolution.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.technicalSolutionId | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
                         class="col-12"
                     >
                         <mat-label>{{ t('appHealth.Name') }}</mat-label>

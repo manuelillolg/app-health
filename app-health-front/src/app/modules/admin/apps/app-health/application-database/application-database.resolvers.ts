@@ -1,4 +1,7 @@
-import { AppHealthApplicationDatabase } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationDatabase, AppHealthApplicationInfrastructureService, AppHealthDatabase } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { DatabaseService } from '../database/database.service';
 import { applicationDatabaseColumnsConfig } from './application-database.columns-config';
 import { ApplicationDatabaseService } from './application-database.service';
 import { inject } from '@angular/core';
@@ -35,20 +38,30 @@ export const applicationDatabasePaginationResolver: ResolveFn<GridData<AppHealth
     });
 };
 
-export const applicationDatabaseNewResolver: ResolveFn<Action> = (
+export const applicationDatabaseNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetDatabases: AppHealthDatabase[];
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationDatabaseService = inject(ApplicationDatabaseService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationDatabase.detail.new',
         isViewAction: true,
     });
+
+    return applicationDatabaseService.getRelations();
 };
 
 export const applicationDatabaseEditResolver: ResolveFn<{
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetDatabases: AppHealthDatabase[];
     object: AppHealthApplicationDatabase;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +77,7 @@ export const applicationDatabaseEditResolver: ResolveFn<{
     });
 
     return applicationDatabaseService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

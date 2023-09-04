@@ -79,6 +79,40 @@
 
                     <mat-form-field
                         appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.ApplicationId') }}</mat-label>
+                        <mat-select
+                            formControlName="applicationId"
+                        >
+                            <mat-option
+                                *ngFor="let application of applications$ | async"
+                                [value]="application.id"
+                            >
+                                {{ application.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.applicationId | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-6"
+                    >
+                        <mat-label>{{ t('appHealth.LanguageId') }}</mat-label>
+                        <mat-select
+                            formControlName="languageId"
+                        >
+                            <mat-option
+                                *ngFor="let language of languages$ | async"
+                                [value]="language.id"
+                            >
+                                {{ language.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.languageId | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
                         class="col-4"
                     >
                         <mat-label>{{ t('appHealth.Version') }}</mat-label>

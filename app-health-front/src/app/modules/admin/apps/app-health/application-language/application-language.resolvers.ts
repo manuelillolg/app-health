@@ -1,4 +1,6 @@
-import { AppHealthApplicationLanguage } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationLanguage, AppHealthLanguage } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
+import { LanguageService } from '../language/language.service';
 import { applicationLanguageColumnsConfig } from './application-language.columns-config';
 import { ApplicationLanguageService } from './application-language.service';
 import { inject } from '@angular/core';
@@ -35,20 +37,28 @@ export const applicationLanguagePaginationResolver: ResolveFn<GridData<AppHealth
     });
 };
 
-export const applicationLanguageNewResolver: ResolveFn<Action> = (
+export const applicationLanguageNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetLanguages: AppHealthLanguage[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationLanguageService = inject(ApplicationLanguageService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationLanguage.detail.new',
         isViewAction: true,
     });
+
+    return applicationLanguageService.getRelations();
 };
 
 export const applicationLanguageEditResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetLanguages: AppHealthLanguage[];
     object: AppHealthApplicationLanguage;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +74,7 @@ export const applicationLanguageEditResolver: ResolveFn<{
     });
 
     return applicationLanguageService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

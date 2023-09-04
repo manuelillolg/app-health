@@ -1,9 +1,13 @@
-import { AppHealthApplication } from '../app-health.types';
+import { NgForOf } from '@angular/common';
+import { AppHealthApplication, AppHealthTechnicalSolution } from '../app-health.types';
+import { TechnicalSolutionService } from '../technical-solution/technical-solution.service';
 import { ApplicationService } from './application.service';
 import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 import { Action, Crumb, defaultDetailImports, log, mapActions, Utils, ViewDetailComponent } from '@aurora';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom, Observable, takeUntil } from 'rxjs';
 
 @Component({
     selector       : 'app-health-application-detail',
@@ -13,6 +17,9 @@ import { lastValueFrom, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [
         ...defaultDetailImports,
+        MatSelectModule,
+        MatCheckboxModule,
+        NgForOf,
     ],
 })
 export class ApplicationDetailComponent extends ViewDetailComponent
@@ -26,6 +33,9 @@ export class ApplicationDetailComponent extends ViewDetailComponent
     // It should not be used habitually, since the source of truth is the form.
     managedObject: AppHealthApplication;
 
+    // relationships
+    technicalSolutions$: Observable<AppHealthTechnicalSolution[]>;
+
     // breadcrumb component definition
     breadcrumb: Crumb[] = [
         { translation: 'App' },
@@ -36,6 +46,7 @@ export class ApplicationDetailComponent extends ViewDetailComponent
     constructor(
         private readonly applicationService: ApplicationService,
         protected readonly injector: Injector,
+        private readonly technicalSolutionService: TechnicalSolutionService,
     )
     {
         super(injector);
@@ -46,6 +57,7 @@ export class ApplicationDetailComponent extends ViewDetailComponent
     init(): void
     {
         /**/
+        this.technicalSolutions$ = this.technicalSolutionService.technicalSolutions$;
     }
 
     onSubmit($event): void

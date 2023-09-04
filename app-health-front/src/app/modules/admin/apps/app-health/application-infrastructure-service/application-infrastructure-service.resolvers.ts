@@ -1,4 +1,6 @@
-import { AppHealthApplicationInfrastructureService } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationInfrastructureService, AppHealthInfrastructureService } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
+import { InfrastructureServiceService } from '../infrastructure-service/infrastructure-service.service';
 import { applicationInfrastructureServiceColumnsConfig } from './application-infrastructure-service.columns-config';
 import { ApplicationInfrastructureServiceService } from './application-infrastructure-service.service';
 import { inject } from '@angular/core';
@@ -35,20 +37,28 @@ export const applicationInfrastructureServicePaginationResolver: ResolveFn<GridD
     });
 };
 
-export const applicationInfrastructureServiceNewResolver: ResolveFn<Action> = (
+export const applicationInfrastructureServiceNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetInfrastructureServices: AppHealthInfrastructureService[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationInfrastructureServiceService = inject(ApplicationInfrastructureServiceService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationInfrastructureService.detail.new',
         isViewAction: true,
     });
+
+    return applicationInfrastructureServiceService.getRelations();
 };
 
 export const applicationInfrastructureServiceEditResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetInfrastructureServices: AppHealthInfrastructureService[];
     object: AppHealthApplicationInfrastructureService;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +74,7 @@ export const applicationInfrastructureServiceEditResolver: ResolveFn<{
     });
 
     return applicationInfrastructureServiceService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };

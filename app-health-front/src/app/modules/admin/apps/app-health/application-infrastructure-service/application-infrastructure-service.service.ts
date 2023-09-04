@@ -1,5 +1,7 @@
-import { AppHealthApplicationInfrastructureService, AppHealthCreateApplicationInfrastructureService, AppHealthUpdateApplicationInfrastructureServiceById, AppHealthUpdateApplicationInfrastuctureServices } from '../app-health.types';
-import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findQuery, getQuery, paginationQuery, updateByIdMutation, updateMutation } from './application-infrastructure-service.graphql';
+import { AppHealthApplication, AppHealthApplicationInfrastructureService, AppHealthCreateApplicationInfrastructureService, AppHealthInfrastructureService, AppHealthUpdateApplicationInfrastructureServiceById, AppHealthUpdateApplicationInfrastuctureServices } from '../app-health.types';
+import { ApplicationService } from '../application/application.service';
+import { InfrastructureServiceService } from '../infrastructure-service/infrastructure-service.service';
+import { createMutation, deleteByIdMutation, deleteMutation, fields, findByIdQuery, findByIdWithRelationsQuery, findQuery, getQuery, getRelations, paginationQuery, updateByIdMutation, updateMutation } from './application-infrastructure-service.graphql';
 import { Injectable } from '@angular/core';
 import { DocumentNode, FetchResult } from '@apollo/client/core';
 import { GraphQLHeaders, GraphQLService, GridData, parseGqlFields, QueryStatement } from '@aurora';
@@ -16,6 +18,8 @@ export class ApplicationInfrastructureServiceService
 
     constructor(
         private readonly graphqlService: GraphQLService,
+        private readonly applicationService: ApplicationService,
+        private readonly infrastructureServiceService: InfrastructureServiceService,
     ) {}
 
     /**
@@ -112,6 +116,65 @@ export class ApplicationInfrastructureServiceService
             );
     }
 
+    findByIdWithRelations(
+        {
+            graphqlStatement = findByIdWithRelationsQuery,
+            id = '',
+            constraint = {},
+            headers = {},
+            queryApplications = {},
+            constraintApplications = {},
+            queryInfrastructureServices = {},
+            constraintInfrastructureServices = {},
+        }: {
+            graphqlStatement?: DocumentNode;
+            id?: string;
+            constraint?: QueryStatement;
+            headers?: GraphQLHeaders;
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryInfrastructureServices?: QueryStatement;
+            constraintInfrastructureServices?: QueryStatement;
+        } = {},
+    ): Observable<{
+        object: AppHealthApplicationInfrastructureService;
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetInfrastructureServices: AppHealthInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                object: AppHealthApplicationInfrastructureService;
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetInfrastructureServices: AppHealthInfrastructureService[];
+            }>({
+                query    : parseGqlFields(graphqlStatement, fields, constraint),
+                variables: {
+                    id,
+                    constraint,
+                    queryApplications,
+                    constraintApplications,
+                    queryInfrastructureServices,
+                    constraintInfrastructureServices,
+                },
+                context: {
+                    headers,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationInfrastructureServiceSubject$.next(data.object);
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.infrastructureServiceService.infrastructureServicesSubject$.next(data.appHealthGetInfrastructureServices);
+                }),
+            );
+    }
+
     find(
         {
             graphqlStatement = findQuery,
@@ -190,6 +253,51 @@ export class ApplicationInfrastructureServiceService
                 tap(data =>
                 {
                     this.applicationInfrastuctureServicesSubject$.next(data.objects);
+                }),
+            );
+    }
+
+    getRelations(
+        {
+            queryApplications = {},
+            constraintApplications = {},
+            queryInfrastructureServices = {},
+            constraintInfrastructureServices = {},
+            headers = {},
+        }: {
+            queryApplications?: QueryStatement;
+            constraintApplications?: QueryStatement;
+            queryInfrastructureServices?: QueryStatement;
+            constraintInfrastructureServices?: QueryStatement;
+            headers?: GraphQLHeaders;
+        } = {},
+    ): Observable<{
+        appHealthGetApplications: AppHealthApplication[];
+        appHealthGetInfrastructureServices: AppHealthInfrastructureService[];
+    }>
+    {
+        return this.graphqlService
+            .client()
+            .watchQuery<{
+                appHealthGetApplications: AppHealthApplication[];
+                appHealthGetInfrastructureServices: AppHealthInfrastructureService[];
+            }>({
+                query    : getRelations,
+                variables: {
+                    queryApplications,
+                    constraintApplications,
+                    queryInfrastructureServices,
+                    constraintInfrastructureServices,
+                },
+            })
+            .valueChanges
+            .pipe(
+                first(),
+                map(result => result.data),
+                tap(data =>
+                {
+                    this.applicationService.applicationsSubject$.next(data.appHealthGetApplications);
+                    this.infrastructureServiceService.infrastructureServicesSubject$.next(data.appHealthGetInfrastructureServices);
                 }),
             );
     }

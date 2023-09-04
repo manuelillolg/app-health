@@ -11,6 +11,38 @@ export const fields = `
 `;
 
 export const relationsFields = `
+    appHealthGetApplications (
+        query: $queryApplications
+        constraint: $constraintApplications
+    ) {
+        id
+        name
+        description
+        businessImpact
+        type
+        releaseDate
+        architectureDiagram
+        hasTenants
+        hasLicensing
+        costLicensesPerYear
+        requestsPerDay
+    }
+    appHealthGetAuthorizationInterfaces (
+        query: $queryAuthorizationInterfaces
+        constraint: $constraintAuthorizationInterfaces
+    ) {
+        id
+        name
+        score
+    }
+    appHealthGetApplicationInfrastuctureServices (
+        query: $queryApplicationInfrastuctureServices
+        constraint: $constraintApplicationInfrastuctureServices
+    ) {
+        id
+        averageCostPerYear
+        score
+    }
 `;
 
 // default methods
@@ -45,6 +77,19 @@ export const getQuery = gql`
     }
 `;
 
+export const getRelations = gql`
+    query AppHealthGetApplicationAuthorizationsRelations(
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+        $queryAuthorizationInterfaces: QueryStatement
+        $constraintAuthorizationInterfaces: QueryStatement
+        $queryApplicationInfrastuctureServices: QueryStatement
+        $constraintApplicationInfrastuctureServices: QueryStatement
+    ) {
+        ${relationsFields}
+    }
+`;
+
 export const findByIdQuery = gql`
     query AppHealthFindApplicationAuthorizationById (
         $id: ID
@@ -57,6 +102,28 @@ export const findByIdQuery = gql`
             id
             #FIELDS
         }
+    }
+`;
+
+export const findByIdWithRelationsQuery = gql`
+    query AppHealthFindApplicationAuthorizationByIdWithRelations (
+        $id: ID
+        $constraint: QueryStatement
+        $queryApplications: QueryStatement
+        $constraintApplications: QueryStatement
+        $queryAuthorizationInterfaces: QueryStatement
+        $constraintAuthorizationInterfaces: QueryStatement
+        $queryApplicationInfrastuctureServices: QueryStatement
+        $constraintApplicationInfrastuctureServices: QueryStatement
+    ) {
+        object: appHealthFindApplicationAuthorizationById (
+            id: $id
+            constraint: $constraint
+        ) {
+            id
+            #FIELDS
+        }
+        ${relationsFields}
     }
 `;
 

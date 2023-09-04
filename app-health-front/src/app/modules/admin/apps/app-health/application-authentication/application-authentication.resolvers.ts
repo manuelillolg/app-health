@@ -1,4 +1,7 @@
-import { AppHealthApplicationAuthentication } from '../app-health.types';
+import { AppHealthApplication, AppHealthApplicationAuthentication, AppHealthApplicationInfrastructureService, AppHealthAuthenticationInterface } from '../app-health.types';
+import { ApplicationInfrastructureServiceService } from '../application-infrastructure-service/application-infrastructure-service.service';
+import { ApplicationService } from '../application/application.service';
+import { AuthenticationInterfaceService } from '../authentication-interface/authentication-interface.service';
 import { applicationAuthenticationColumnsConfig } from './application-authentication.columns-config';
 import { ApplicationAuthenticationService } from './application-authentication.service';
 import { inject } from '@angular/core';
@@ -35,20 +38,30 @@ export const applicationAuthenticationPaginationResolver: ResolveFn<GridData<App
     });
 };
 
-export const applicationAuthenticationNewResolver: ResolveFn<Action> = (
+export const applicationAuthenticationNewResolver: ResolveFn<{
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetAuthenticationInterfaces: AppHealthAuthenticationInterface[];
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+}> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
 ) =>
 {
     const actionService = inject(ActionService);
+    const applicationAuthenticationService = inject(ApplicationAuthenticationService);
 
-    return actionService.action({
+    actionService.action({
         id          : 'appHealth::applicationAuthentication.detail.new',
         isViewAction: true,
     });
+
+    return applicationAuthenticationService.getRelations();
 };
 
 export const applicationAuthenticationEditResolver: ResolveFn<{
+    appHealthGetApplicationInfrastuctureServices: AppHealthApplicationInfrastructureService[];
+    appHealthGetApplications: AppHealthApplication[];
+    appHealthGetAuthenticationInterfaces: AppHealthAuthenticationInterface[];
     object: AppHealthApplicationAuthentication;
 }> = (
     route: ActivatedRouteSnapshot,
@@ -64,7 +77,7 @@ export const applicationAuthenticationEditResolver: ResolveFn<{
     });
 
     return applicationAuthenticationService
-        .findById({
+        .findByIdWithRelations({
             id: route.paramMap.get('id'),
         });
 };
