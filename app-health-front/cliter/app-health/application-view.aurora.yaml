@@ -23,6 +23,8 @@ aggregateProperties:
       key: id
       field: application
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: totalViews
     type: int.unsigned
     maxLength: 10

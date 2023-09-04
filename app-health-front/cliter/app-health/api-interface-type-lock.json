@@ -2,32 +2,12 @@
     "version": "0.0.1",
     "files": [
         {
-            "path": "src/assets/i18n/app-health/en.json",
-            "integrity": "sha1:534e5f914ae99bf0a342a2f7a7e0724bd0d11ef7"
-        },
-        {
-            "path": "src/assets/i18n/app-health/es.json",
-            "integrity": "sha1:534e5f914ae99bf0a342a2f7a7e0724bd0d11ef7"
-        },
-        {
             "path": "src/app/modules/admin/apps/app-health/app-health.component.html",
             "integrity": "sha1:67404a161486df15c48cc64ace3ebafc7edd1503"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/app-health.component.ts",
             "integrity": "sha1:1942699685935355aca383bd4742564761d3ac86"
-        },
-        {
-            "path": "src/app/modules/admin/apps/app-health/app-health.navigation.ts",
-            "integrity": "sha1:a9a2e558eee7d79fa70cd3346319898588aac956"
-        },
-        {
-            "path": "src/app/modules/admin/apps/app-health/app-health.routes.ts",
-            "integrity": "sha1:f5e8ce605695c8ce5db32c96f8e945f330b6f9d6"
-        },
-        {
-            "path": "src/app/modules/admin/apps/app-health/app-health.types.ts",
-            "integrity": "sha1:da39a3ee5e6b4b0d3255bfef95601890afd80709"
         },
         {
             "path": "src/app/modules/admin/apps/app-health/api-interface-type/api-interface-type-detail.component.html",

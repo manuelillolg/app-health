@@ -23,6 +23,8 @@ aggregateProperties:
       key: id
       field: application
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: infrastructureServiceId
     type: id
     length: 36
@@ -34,6 +36,8 @@ aggregateProperties:
       key: id
       field: infrastructureService
       avoidConstraint: true
+    webComponent:
+      type: select
   - name: averageCostPerYear
     type: int.unsigned
     maxLength: 10
