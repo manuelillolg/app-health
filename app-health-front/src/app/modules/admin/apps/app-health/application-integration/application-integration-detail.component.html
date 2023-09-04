@@ -1,0 +1,152 @@
+<div class="absolute inset-0 overflow-hidden flex flex-col w-full" *transloco="let t">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-4 sm:px-10 border-b bg-card dark:bg-transparent">
+
+        <div class="flex-1 min-w-0">
+            <au-breadcrumb [data]="breadcrumb"></au-breadcrumb>
+            <au-title>
+                <mat-icon
+                    svgIcon="heroicons_solid:tag"
+                    class="icon-size-8 mr-2"
+                >
+                </mat-icon>
+                {{ t('appHealth.ApplicationIntegration') }}
+            </au-title>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button
+                *ngIf="currentViewAction.id === 'appHealth::applicationIntegration.detail.edit'"
+                mat-flat-button
+                type="submit"
+                class="ml-3"
+                form="appHealthApplicationIntegrationFormDetail"
+                color="accent"
+                [disabled]="fg.pristine || ('appHealth::applicationIntegration.detail.update' | getSpinnerFlag | async)"
+            >
+                <mat-icon
+                    *ngIf="!('appHealth::applicationIntegration.detail.update' | getSpinnerFlag | async)"
+                    svgIcon="mat_solid:edit"
+                    class="icon-size-5 mr-2"
+                >
+                </mat-icon>
+                <mat-icon *ngIf="'appHealth::applicationIntegration.detail.update' | getSpinnerFlag | async">
+                    <mat-spinner diameter="20"></mat-spinner>
+                </mat-icon>
+                {{ t('Update') }}
+            </button>
+            <button
+                *ngIf="currentViewAction.id === 'appHealth::applicationIntegration.detail.new'"
+                mat-flat-button
+                type="submit"
+                form="appHealthApplicationIntegrationFormDetail"
+                class="ml-3"
+                color="accent"
+                [disabled]="fg.pristine || ('appHealth::applicationIntegration.detail.create' | getSpinnerFlag | async)"
+            >
+                <mat-icon
+                    *ngIf="!('appHealth::applicationIntegration.detail.create' | getSpinnerFlag | async)"
+                    svgIcon="mat_solid:save"
+                    class="icon-size-5 mr-2"
+                >
+                </mat-icon>
+                <mat-icon *ngIf="'appHealth::applicationIntegration.detail.create' | getSpinnerFlag | async">
+                    <mat-spinner diameter="20"></mat-spinner>
+                </mat-icon>
+                {{ t('Create') }}
+            </button>
+        </div>
+        <!-- / Actions -->
+
+    </div>
+    <!-- / Header -->
+
+    <!-- Main -->
+    <div class="flex-auto pt-6 px-6 sm:pt-10 sm:px-10 overflow-y-auto" cdkScrollable>
+
+        <div class="form-card">
+
+            <form
+                id="appHealthApplicationIntegrationFormDetail"
+                novalidate
+                [formGroup]="fg"
+                (ngSubmit)="onSubmit($event)"
+            >
+
+                <div class="layout__container">
+
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-12"
+                    >
+                        <mat-label>{{ t('appHealth.Name') }}</mat-label>
+                        <input
+                            matInput
+                            formControlName="name"
+                            maxlength="255"
+                            required
+                        >
+                        <mat-error>{{ formErrors?.name | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-12"
+                    >
+                        <mat-label>{{ t('appHealth.Description') }}</mat-label>
+                        <textarea
+                            matInput
+                            formControlName="description"
+                        >
+                        </textarea>
+                        <mat-error>{{ formErrors?.description | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-2"
+                    >
+                        <mat-label>{{ t('appHealth.InterfaceNumbers') }}</mat-label>
+                        <input
+                            matInput
+                            formControlName="interfaceNumbers"
+                            type="number"
+                            maxlength="10"
+                        >
+                        <mat-error>{{ formErrors?.interfaceNumbers | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-4"
+                    >
+                        <mat-label>{{ t('appHealth.Modality') }}</mat-label>
+                        <mat-select formControlName="modality">
+                            <mat-option value="UNIDIRECTIONAL">UNIDIRECTIONAL</mat-option>
+                            <mat-option value="BIDIRECTIONAL">BIDIRECTIONAL</mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.modality | async }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field
+                        appearance="outline"
+                        class="col-2"
+                    >
+                        <mat-label>{{ t('appHealth.Score') }}</mat-label>
+                        <input
+                            matInput
+                            formControlName="score"
+                            type="number"
+                            maxlength="6"
+                        >
+                        <mat-error>{{ formErrors?.score | async }}</mat-error>
+                    </mat-form-field>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <!-- / Main -->
+
+</div>
